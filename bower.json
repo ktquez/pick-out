@@ -1,0 +1,25 @@
+{
+  "name": "pickout",
+  "description": "Cool efect for field select on form",
+  "main": "./dist/pickout.min.js",
+  "authors": [
+    "Alan Ktquez <ktquez@gmail.com> (http://ktquez.com)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "select",
+    "dropdown",
+    "form",
+    "input",
+    "modal"
+  ],
+  "moduleType": [],
+  "homepage": "https://github.com/ktquez/pickout",
+  "ignore": [
+    ".*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

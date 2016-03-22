@@ -1,0 +1,35 @@
+{
+  "name": "pickout",
+  "version": "1.0.0",
+  "description": "Cool efect for field select on form",
+  "main": "./dist/pickout.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ktquez/pickout.git"
+  },
+  "keywords": [
+    "select",
+    "dropdown",
+    "form",
+    "input",
+    "modal"
+  ],
+  "author": "Alan Ktquez <ktquez@gmail.com> (http://ktquez.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ktquez/pickout/issues"
+  },
+  "homepage": "https://github.com/ktquez/pickout#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-cli": "^1.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.1"
+  }
+}
