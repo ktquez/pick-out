@@ -14,7 +14,7 @@ npm install pickout --save
 bower install pickout --save
 ```
 
-### or
+### Inserting HTML
 Include the style
 ```
 <link rel="stylesheet" href="./path/to/pickout.min.css">
@@ -31,8 +31,8 @@ Include the script
 
 ## Example of block the select field
 ```
+<!-- Normal use -->
 <label for="label_1">
- <!-- Normal use -->
 	<select name="label_1" id="label_1" class="label_1 all" placeholder="Select to option">
 		<option value="opt1">Option 1</option>
 		<option value="opt2">Option 2</option>
@@ -41,8 +41,9 @@ Include the script
 	</select>		
 </label>
 
+
+<!-- Using with icons -->
 <label for="label_2">
- <!-- Using with icons -->
 	<select name="label_2" id="label_2" class="label_2 all" placeholder="Select to option">
 		<option value="opt1" data-icon="&#xe601;" >Option 1</option>
 		<option value="opt2" data-icon="&#xe602;">Option 2</option>
@@ -59,7 +60,7 @@ Include the script
 ```
 pickout.to('.label_1');
 ```
-Or
+Another option
 ```
 pickout.to({
   el: '.label_1'
@@ -75,8 +76,11 @@ pickout.to('.all');
 ```
 
 ### Customize styles
-To customize, simply add in your CSS rule with this pattern:
+To customize, simply add in your CSS rule with this pattern:<br>
 ```
+.pk-input.-MySelector{
+	// my customization	
+}
 .pk-arrow.-MySelector{
 	// my customization	
 }
@@ -92,9 +96,7 @@ pickout.to({
 
 #### Themes
 - clean (Default) <br>
-- dark
-<br>
-For Example: 
+- dark 
 ```
 pickout.to({
   el: '.label_1',
