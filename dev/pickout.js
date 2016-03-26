@@ -64,9 +64,6 @@ var pickout = (function(){
 
 		// Percorre o array e aplica uma função para cada elemento select
 		selfConfig.DOM.map(function(select){
-
-			console.log(select);
-
 			createElements(select);
 		});
 
@@ -80,6 +77,7 @@ var pickout = (function(){
 		
 		select.style.display = 'none';
 		var parent = select.parentElement;
+		parent.setAttribute('style', 'position:relative;float:left;');
 		var placeholder = select.getAttribute('placeholder');
 
 		// input
@@ -89,17 +87,17 @@ var pickout = (function(){
 		if(!!placeholder) input.setAttribute('placeholder', placeholder);
 
 		if(parent.hasAttribute('for')) input.setAttribute('id', parent.getAttribute('for'));
+		
 		// Arrow
 		var arrow = document.createElement('span');
-		arrow.setAttribute('class', 'pk-arrow');
+		arrow.setAttribute('class', 'pk-arrow -'+ selfConfig.theme);
 
 		// Inseri o input e o arrow
 		parent.appendChild(input);
 		parent.appendChild(arrow);
 
-
 		// Event listener
-		input.addEventListener('click', function(e){
+		parent.addEventListener('click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -114,8 +112,8 @@ var pickout = (function(){
 	 * @param  {Object DOm} select
 	 */
 	function fireModal(select){
-
-		var modal = document.querySelector('.pk-modal');
+		var modal = document.querySelector('.pk-modal'),
+			data;
 
 		// Evita de carrega outra vez, quando troca de aba e o field dá focus novamente
 		var main = modal.querySelector('.main');
@@ -127,10 +125,7 @@ var pickout = (function(){
 		var options = [].slice.call(select);
 	
 		var optionsModal = options.map(function(option, key){
-			/*icon.push(option.getAttribute('data-icon'));
-			item.push(option.innerHTML);*/
-
-			var data = {index: key, item: option};
+			data = {index: key, item: option};
 			createOption(data, modal, select);
 		});
 
@@ -174,11 +169,18 @@ var pickout = (function(){
 			e.stopPropagation();
 
 			select.children[data.index].setAttribute('selected', 'selected');
-			select.parentElement.querySelector('.pk-input').value = txt.innerHTML;		
+			feedInput(select, txt.innerHTML);		
 			closeModal();
 		});
 
 
+	}
+
+	/**
+	 * Alimenta o input
+	 */
+	function feedInput(select, value){
+		select.parentElement.querySelector('.pk-input').value = value;
 	}
 
 	/**
@@ -187,7 +189,11 @@ var pickout = (function(){
 	function setInitialValue(config){
 		setElement(config);	
 
-
+		// Percorre o array e aplica uma função para cada elemento select
+		selfConfig.DOM.map(function(select){
+			console.log(select);
+			feedInput(select, select[select.selectedIndex].innerHTML);
+		});
 	}
 
 	/**
@@ -214,15 +220,23 @@ var pickout = (function(){
 
 		var close = document.createElement('span');
 		close.setAttribute('class', 'close');
-		close.innerHTML = '';
+		close.innerHTML = '&times;';
 
 		document.body.appendChild(overlay);
 		document.body.appendChild(modal);
 		modal.appendChild(head);
+		modal.appendChild(close);
 		modal.appendChild(mainModal);
 
 		// Event listener
 		overlay.addEventListener('click', function(e){
+			e.preventDefault();
+			e.stopPropagation();
+
+			closeModal();
+		});
+
+		close.addEventListener('click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -268,22 +282,5 @@ var pickout = (function(){
 		to : init,
 		updated : setInitialValue
 	};
-
-
-
-	// - se tiver icone, cria a lista de options com icones, senão cria sem a parte de icones
-	// - a modal de acordo com os parâmetros de configuração default (head e footer, se houver)
-	// - registrar evento no overlay e no (x) close que será criado
-	// 
-	// quando houver seleção de alguma opção
-	// - adicionar o selected no select na option correta
-	// - adicionar o value no input 
-	// - zerar a modal
-	// 
-	// enxugar o código
-	// enxugar o css
-	// testa em diversas situações
-
-
 
 })();
