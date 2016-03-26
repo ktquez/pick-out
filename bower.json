@@ -1,7 +1,7 @@
 {
   "name": "pickout",
   "description": "Cool efect for field select on form",
-  "version" : "1.0.0",
+  "version" : "1.0.1",
   "main": "./dist/pickout.min.js",
   "authors": [
     "Alan Ktquez <ktquez@gmail.com> (http://ktquez.com)"

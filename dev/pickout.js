@@ -153,7 +153,7 @@ var pickout = (function(){
 
 		var icon = document.createElement('span');
 		icon.setAttribute('class', 'icon');
-		icon.innerHTML = data.item.getAttribute('data-icon');
+		icon.innerHTML = data.item.getAttribute('data-icon') || '';
 
 		var txt = document.createElement('span');
 		txt.setAttribute('class', 'txt');
@@ -168,7 +168,16 @@ var pickout = (function(){
 			e.preventDefault();
 			e.stopPropagation();
 
-			select.children[data.index].setAttribute('selected', 'selected');
+			// Converte para array, por se tratar de um (object) HTMLCollection 
+			[].slice.call(select.children).map(function(item, index){
+				if (index === data.index) {
+					item.setAttribute('selected', 'selected');
+					return;
+				}
+
+				item.removeAttribute('selected');
+			});
+			
 			feedInput(select, txt.innerHTML);		
 			closeModal();
 		});
@@ -191,7 +200,6 @@ var pickout = (function(){
 
 		// Percorre o array e aplica uma função para cada elemento select
 		selfConfig.DOM.map(function(select){
-			console.log(select);
 			feedInput(select, select[select.selectedIndex].innerHTML);
 		});
 	}
@@ -212,7 +220,7 @@ var pickout = (function(){
 		var modal = document.createElement('div');
 		modal.setAttribute('class', 'pk-modal');		
 
-		var mainModal = document.createElement('div');
+		var mainModal = document.createElement('ul');
 		mainModal.setAttribute('class', 'main');
 
 		var head = document.createElement('div');

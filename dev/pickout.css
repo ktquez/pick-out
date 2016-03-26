@@ -142,6 +142,10 @@
 	color:#666;
 }
 
+.pk-modal > .main{
+	list-style:none;
+}
+
 .pk-modal > .main > li:hover{
 	background:#f2f2f2;			
 }
