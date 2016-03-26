@@ -121,7 +121,7 @@ pickout.updated('.label');
 ```
 
 ## Current version stable
-**V1.0.1**
+**V1.0.2**
 
 ## ChangeLog
 
