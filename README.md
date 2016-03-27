@@ -5,32 +5,37 @@ Cool effect for field select on form
 
 ## How to use 
 ### npm
-```
+
+```shell
 npm install pickout --save
 ```
 
 ### bower
-```
+
+```shell
 bower install pickout --save
 ```
 
 ### Inserting HTML
 Include the style
-```
+
+```html
 <link rel="stylesheet" href="./path/to/pickout.min.css">
 ...
 </head>
 ```
 
 Include the script
-```
+
+```html
 <script src="./path/to/pickout.min.js"></script>
 ...
 </body>
 ```
 
 ## Example of block the select field
-```
+
+```html
 <!-- Normal use -->
 <label for="label_1">
 	<select name="label_1" id="label_1" class="label_1 all" placeholder="Select to option">
@@ -57,11 +62,14 @@ Include the script
 `` data-icon `` : Icon code, for example: "e602", simply use ``data-icon="&#xe602"``;
 
 ## Set the select
-```
+
+```js
 pickout.to('.label_1');
 ```
+
 Another option
-```
+
+```js
 pickout.to({
   el: '.label_1'
 });
@@ -71,13 +79,15 @@ pickout.to({
 
 ### Set all at once
 You can assign to selects separately, however you can apply all at once, simply declare a class in common to all selects and inform the plugin, for example:
-```
+
+```js
 pickout.to('.all');
 ```
 
 ### Customize styles
 To customize, simply add in your CSS rule with this pattern:<br>
-```
+
+```css
 .pk-input.-MySelector{
 	// my customization	
 }
@@ -87,7 +97,8 @@ To customize, simply add in your CSS rule with this pattern:<br>
 ```
 
 And the definition of pickout informs the theme
-```
+
+```js
 pickout.to({
   el: '.label_1',
   theme: 'MySelector'
@@ -97,7 +108,8 @@ pickout.to({
 #### Themes
 - clean (Default) <br>
 - dark 
-```
+
+```js
 pickout.to({
   el: '.label_1',
   theme: 'dark'
@@ -105,7 +117,8 @@ pickout.to({
 ```
 
 ## Select with default values
-```
+
+```html
 <label for="label">
 	<select name="label" id="label" class="label all" placeholder="Select to option">
 	  <!-- Option selected by default -->
@@ -116,7 +129,8 @@ pickout.to({
 ```
 
 It uses the updated function
-```
+
+```js
 pickout.updated('.label');
 ```
 
@@ -133,15 +147,3 @@ pickout.updated('.label');
 If you want a faster communication, find me on [@ktquez](https://twitter.com/ktquez)
 
 **thank you**
-
-
-
-
-
-
-
-
-
-
-
-
