@@ -1,7 +1,7 @@
 # pickout
 Cool effect for field select on form
 
-![alt tag](https://cloud.githubusercontent.com/assets/8084606/14060913/ff3d6438-f350-11e5-9e95-1404418f2523.gif)
+![alt tag](https://cloud.githubusercontent.com/assets/8084606/14072318/97c66458-f495-11e5-9900-9e83734334ff.gif)
 
 ## How to use 
 ### npm
@@ -37,25 +37,27 @@ Include the script
 
 ```html
 <!-- Normal use -->
-<label for="label_1">
-	<select name="label_1" id="label_1" class="label_1 all" placeholder="Select to option">
+<div class="form-group">
+	<label for="city">City:</label>
+	<select name="city" id="city" class="city all" placeholder="Select to option">
 		<option value="opt1">Option 1</option>
 		<option value="opt2">Option 2</option>
 		<option value="opt3">Option 3</option>
 		<option value="opt4">Option 4</option>
 	</select>		
-</label>
+</div>
 
 
 <!-- Using with icons -->
-<label for="label_2">
-	<select name="label_2" id="label_2" class="label_2 all" placeholder="Select to option">
+<div class="form-group">
+	<label for="state">State:</label>
+	<select name="state" id="state" class="state all" placeholder="Select to option">
 		<option value="opt1" data-icon="&#xe601;" >Option 1</option>
 		<option value="opt2" data-icon="&#xe602;">Option 2</option>
 		<option value="opt3" data-icon="&#xe603;">Option 3</option>
 		<option value="opt4" data-icon="&#xe604;">Option 4</option>
 	</select>		
-</label>
+</div>
 ```
 
 ### Attributes
@@ -64,18 +66,27 @@ Include the script
 ## Set the select
 
 ```js
-pickout.to('.label_1');
+pickout.to('.city');
 ```
 
 Another option
 
 ```js
 pickout.to({
-  el: '.label_1'
+  el: '.city'
 });
 ```
 
 **OBS:** Do not forget to declare the characters responsible dial if class use (.) If ID using the (#)
+
+### Search field 
+Field to search options within the modal, default is false
+```js
+pickout.to({
+  el: '.state',
+  search: true
+});
+```
 
 ### Set all at once
 You can assign to selects separately, however you can apply all at once, simply declare a class in common to all selects and inform the plugin, for example:
@@ -100,18 +111,19 @@ And the definition of pickout informs the theme
 
 ```js
 pickout.to({
-  el: '.label_1',
+  el: '.city',
   theme: 'MySelector'
 });
 ```
 
 #### Themes
+**theme** - Modify the visual style, customized through CSS<br.
 - clean (Default) <br>
 - dark 
 
 ```js
 pickout.to({
-  el: '.label_1',
+  el: '.state',
   theme: 'dark'
 });
 ```
@@ -119,13 +131,14 @@ pickout.to({
 ## Select with default values
 
 ```html
-<label for="label">
-	<select name="label" id="label" class="label all" placeholder="Select to option">
+<div class="form-group">
+	<label for="state">State:</label>
+	<select name="state" id="state" class="state all" placeholder="Select to option">
 	  <!-- Option selected by default -->
 		<option value="opt1" selected>Option 1</option>
 		<option value="opt2">Option 2</option>
 	</select>		
-</label>
+</div>
 ```
 
 It uses the updated function
@@ -135,9 +148,11 @@ pickout.updated('.label');
 ```
 
 ## Current version stable
-**V1.0.2**
+**v1.1.1**
 
 ## ChangeLog
+**v1.1.1** 
+- Search field
 
 ## Contributing
 - Check the open issues or open a new issue to start a discussion around your feature idea or the bug you found.
