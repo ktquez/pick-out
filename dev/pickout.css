@@ -22,10 +22,10 @@
 	position:absolute;
 	cursor:pointer;			
 	right:-2px;
-	top:0;
+	bottom:0;
 	text-align:center;	
-	width:30px;
-	height:100%;			
+	width:30px;	
+	padding-bottom:3px;		
 }
 
 .pk-arrow.-clean{
@@ -77,7 +77,7 @@
 }
 
 .pk-modal {
-	 transform: translateX(-50%) scale(0.8,0.8);
+	transform: translateX(-50%) scale(0.8,0.8);
 	left:50%;
 	top:30px;
 	border-radius:3px;
@@ -85,27 +85,65 @@
 	width:280px;
 	max-height:90%;
 	overflow-y:auto;
-	background:#fff;
 	z-index:11;			
 	transition: all .3s;
-	border-bottom:10px solid #efefef;
 	visibility:hidden;		
+	background:#f2f2f2;
 	opacity:0;
 }
 
+.pk-modal > .head{
+	width:calc(100% - 20px);
+	font-size:18px;
+	padding:20px 10px;
+}
+
+.pk-modal.-clean{
+	background:#fff;
+	border-bottom:10px solid #efefef;
+}
+
+.pk-modal.-clean > .head{
+	color:#777;
+	background:#efefef;
+}
+
+.pk-modal.-dark{
+	color:#f2f2f2;
+	background:#444;
+	border-bottom:10px solid #333;	
+}
+
+.pk-modal.-dark > .head{
+	color:#f2f2f2;
+	background:#333;
+}
+
 .pk-modal.-show {
-	 transform: translateX(-50%) scale(1,1);
+	transform: translateX(-50%) scale(1,1);
 	visibility:visible;		
 	opacity:1;
 	box-shadow: 1px 1px 20px 2px #888;
 }
 
-.pk-modal > .head{
-	width:calc(100% - 20px);
-	color:#777;
-	font-size:18px;
-	padding:20px 10px;
-	background:#efefef;
+.pk-search{
+	display:none;
+}
+
+.pk-search.-show{
+	display:block;
+}
+
+.pk-search > input{
+	width:calc(100% - 22px);
+	padding:8px 4px;
+	margin:6px;
+	border:1px solid #ddd;
+}
+
+.pk-no_result_search{
+	padding:10px;
+	font-size:14px;
 }
 
 .pk-modal > .close{
@@ -124,6 +162,23 @@
 	border-bottom:1px solid #efefef;
 }
 
+.pk-option.-clean{	
+	border-bottom:1px solid #efefef;
+}
+
+.pk-option.-dark{	
+	border-bottom:1px solid #333;
+	color:#f2f2f2;
+}
+
+.pk-option.-clean:hover, .pk-option.-clean.-selected{
+	background:#f2f2f2;			
+}
+
+.pk-option.-dark:hover, .pk-option.-dark.-selected{
+	background:#333;			
+}
+
 .pk-option:last-child{
 	border:none;
 }
@@ -139,13 +194,9 @@
 }
 
 .pk-option > .txt{
-	color:#666;
+	color:inherit;
 }
 
 .pk-modal > .main{
 	list-style:none;
-}
-
-.pk-modal > .main > li:hover{
-	background:#f2f2f2;			
 }

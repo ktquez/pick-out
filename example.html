@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title> Pickout - Cool effect in select form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 	<style>
 		*{padding:0;margin:0;}
@@ -19,10 +20,15 @@
 			margin-bottom:10px;
 		}
 
-		label {
+		.form-group {
 			width:100%;
 			float:left;
+			margin:5px 0;
+		}
+
+		label{
 			margin-bottom:10px;
+			float:left;			
 		}
 
 		.field-input, select{
@@ -43,10 +49,13 @@
 			<h2>
 			FORMULÁRIO
 			</h2>
-			<label for="name">
-				<input type="text" name="name" id="name" class="field-input">			
-			</label>
-			<label for="city">
+
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" name="name" id="name" class="field-input">
+			</div>			
+			<div class="form-group">
+				<label for="city">City:</label>
 				<select name="city" id="city" class="city pickout" placeholder="Selecione uma cidade">
 					<option data-icon="&spades;" value="recife">recife</option>
 					<option data-icon="&clubs;" value="natal">natal</option>
@@ -56,11 +65,13 @@
 					<option data-icon="&#9792;" value="ceara">Ceará</option>
 					<option data-icon="&#9794;" value="minas gerais">Minas Gerais</option>
 				</select>			
-			</label>
-			<label for="name2">
+			</div>
+			<div class="form-group">
+				<label for="name2">Name:</label>
 				<input type="text" name="name2" id="name2" class="field-input">			
-			</label>
-			<label for="state">
+			</div>
+			<div class="form-group">
+				<label for="state">State:</label>
 				<select name="state" id="state" class="state pickout" placeholder="Selecione um estado">
 					<option value="pe">Pernambuco</option>
 					<option value="pb">Paraiba</option>
@@ -68,10 +79,7 @@
 					<option value="sp">São Paulo</option>
 					<option value="rj">Rio de Janeiro</option>
 				</select>			
-			</label>	
-			<button type="submit">
-				ENVIAR
-			</button>		
+			</div>		
 		</form>
 
 	</div>
@@ -80,7 +88,17 @@
 	<script>
 
 		// Preparar o select
-		pickout.to('.pickout');
+		//pickout.to('.pickout');
+		pickout.to({
+			el:'.city',
+			theme: 'dark', 
+			search: true
+		});
+
+		pickout.to({
+			el:'.state',
+			theme: 'clean',
+		});
 
 		// Caso o valor já venha do servidor, já atribui a seleção automaticamente
 		pickout.updated('.city');

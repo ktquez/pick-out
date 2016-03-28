@@ -9,37 +9,27 @@ var pickout = (function(){
 
 	"use strict";
 
-	// Atualiza o select se for passado um valor padrão (option) para o field select
-	var updated = false;
+	// Own configuration of each field select
+	var ownConfig = {};
 
-	// Configuração própria de cada campo
-	var selfConfig = {};
-
-	/**
-	 * Valores padrão definidos
-	 * @type {Object}
-	 */
+	// Default values
 	var defaults = {
-		theme : 'clean'
+		theme : 'clean',
+		search : false
 	};
 
 	/**
-	 * Inicia o modulo preparando os elementos
-	 * @param config = String ou objeto para configuração  
+	 * Starts the module preparing the elements
+	 * @param config = String or object to setting
 	 */
 	function init(config){
-
-		// Seta o elemento 
 		setElement(config);
-
-		// Prepara os elementos
 		prepareElement();
-	
 	}
 
 	/**
-	 * Define e atribui o select
-	 * @param {[type]} config [description]
+	 * Defines the own configuration and assigns the select
+	 * @param {[type]} config = String or object to setting
 	 */
 	function setElement(config){
 
@@ -49,33 +39,32 @@ var pickout = (function(){
 			objConfig.el = config;
 		}
 
-		// Recupera o DOM que será manipulado
+		// Retrieve the DOM to be manipulated
 		objConfig.DOM = [].slice.call(document.querySelectorAll(objConfig.el));
 
-		// Mescla com o object default do modulo
 		mergeToDefaults(objConfig);		
 	}
 
 
 	/**
-	 * Prepara os elementos que serão manipulados pelo modulo
+	 * Prepare the elements that will be handled by the module
 	 */
 	function prepareElement(){
 
-		// Percorre o array e aplica uma função para cada elemento select
-		selfConfig.DOM.map(function(select){
-			createElements(select);
+		ownConfig.DOM.map(function(select, index){
+			createElements(select, index);
 		});
 
 		prepareModal();
 	}
 
-	/**
-	 * Cria os elementos
-	 */
-	function createElements(select){
+	function createElements(select, index){
+
+		// Cache self config 
+		var config = ownConfig;
 		
 		select.style.display = 'none';
+
 		var parent = select.parentElement;
 		parent.setAttribute('style', 'position:relative;float:left;');
 		var placeholder = select.getAttribute('placeholder');
@@ -83,16 +72,15 @@ var pickout = (function(){
 		// input
 		var input = document.createElement('input');
 		input.setAttribute('readonly', 'readonly');
-		input.setAttribute('class', 'pk-input -'+ selfConfig.theme);
+		input.setAttribute('class', 'pk-input -'+ config.theme);
 		if(!!placeholder) input.setAttribute('placeholder', placeholder);
 
 		if(parent.hasAttribute('for')) input.setAttribute('id', parent.getAttribute('for'));
 		
 		// Arrow
 		var arrow = document.createElement('span');
-		arrow.setAttribute('class', 'pk-arrow -'+ selfConfig.theme);
+		arrow.setAttribute('class', 'pk-arrow -'+ config.theme);
 
-		// Inseri o input e o arrow
 		parent.appendChild(input);
 		parent.appendChild(arrow);
 
@@ -101,21 +89,27 @@ var pickout = (function(){
 			e.preventDefault();
 			e.stopPropagation();
 
-			fireModal(select);
+			config.currentIndex = index;
+			fireModal(config);
 		});
 
 
 	}
 
 	/**
-	 * Cria e gerencia as opções na modal
-	 * @param  {Object DOm} select
+	 * Create and manage options in modal
+	 * @param  {Object} config = ownConfig
 	 */
-	function fireModal(select){
+	function fireModal(config){
+
 		var modal = document.querySelector('.pk-modal'),
+			select = config.DOM[config.currentIndex],
 			data;
 
-		// Evita de carrega outra vez, quando troca de aba e o field dá focus novamente
+		// modal theme
+		modal.setAttribute('class', modal.getAttribute('class')+' -'+config.theme);
+
+		// Avoid charging again when changing tab and the field gives focus again
 		var main = modal.querySelector('.main');
 		if (!!main.children.length) {
 			return;
@@ -126,30 +120,87 @@ var pickout = (function(){
 	
 		var optionsModal = options.map(function(option, key){
 			data = {index: key, item: option};
-			createOption(data, modal, select);
+			return createOption(data, modal, config);
 		});
 
-		// Exibindo overlay e modal
+		// Displaying overlay and modal
 		modal.setAttribute('class', modal.getAttribute('class') + ' -show');
 		overlay.setAttribute('class', overlay.getAttribute('class') + ' -show');
 
+		var title = select.hasAttribute('placeholder') ? select.getAttribute('placeholder') : 'Select to option';
+		modal.querySelector('.head').innerHTML = title;
+
+		// If search
+		if(config.search) {
+			var search = modal.querySelector('.pk-search');
+			var inputSearch = search.querySelector('input');
+			inputSearch.value = '';
+
+			// Focus no field search
+			setTimeout(function(){
+				inputSearch.focus();
+			}, 300);
+
+			search.setAttribute('class', search.getAttribute('class') + ' -show');
+
+			// Listener
+			inputSearch.addEventListener('keyup', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				var optionDefault = optionsModal,
+					main = modal.querySelector('.main');
+
+				// Deletes the options
+				main.innerHTML = '';
+
+				// If the search field is empty
+				if(!e.target.value) {
+					optionDefault.map(function(option){
+						main.appendChild(option);
+					});
+					return;
+				}
+
+				// If any character typed
+				optionsModal.map(function(option){
+					// Recover text element
+					var txt = option.children[1].innerHTML || option.children[0].innerHTML;
+					// Compares the search with the text option
+					if(txt.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
+						main.appendChild(option);
+					}
+				});
+
+				// No results
+				if (!main.children.length) {
+					var noResults = document.createElement('li');
+					noResults.setAttribute('class', 'pk-no_result_search');
+					noResults.innerHTML = 'No Results';
+
+					main.appendChild(noResults);
+					return;
+				}
+				
+			});
+		}
+		
 	}
 
 	/**
-	 * Cria as opções para o select escolhido
+	 * Creates options for the chosen select
 	 * @param  {Object} data = {index, option}
-	 * @param  {object DOM} modal  = Modal que irá receber a lista
-	 * @param  {object DOM} select  = Field select que está recebendo a ação
+	 * @param  {object DOM} modal  = Modal that will receive the list
+	 * @param  {object} config 
 	 */
-	function createOption(data, modal, select){
+	function createOption(data, modal, config){
 
-		var title = select.hasAttribute('placeholder') ? select.getAttribute('placeholder') : 'Select to option';
-
-		modal.querySelector('.head').innerHTML = title;
+		var select = config.DOM[config.currentIndex];		
 		var main = modal.querySelector('.main');
 
 		var item = document.createElement('li');
-		item.setAttribute('class', 'pk-option');
+		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
+		item.setAttribute('class', 'pk-option '+ selected +' -'+config.theme);
 
 		var icon = document.createElement('span');
 		icon.setAttribute('class', 'icon');
@@ -168,7 +219,7 @@ var pickout = (function(){
 			e.preventDefault();
 			e.stopPropagation();
 
-			// Converte para array, por se tratar de um (object) HTMLCollection 
+			// Converting to array, because it is a (object) HTMLCollection 
 			[].slice.call(select.children).map(function(item, index){
 				if (index === data.index) {
 					item.setAttribute('selected', 'selected');
@@ -182,34 +233,30 @@ var pickout = (function(){
 			closeModal();
 		});
 
-
+		return item;
 	}
 
-	/**
-	 * Alimenta o input
-	 */
 	function feedInput(select, value){
 		select.parentElement.querySelector('.pk-input').value = value;
 	}
 
 	/**
-	 * Define um valor (option) padrão para o field select
+	 * Sets a value (option) default for field select
 	 */
 	function setInitialValue(config){
 		setElement(config);	
 
-		// Percorre o array e aplica uma função para cada elemento select
-		selfConfig.DOM.map(function(select){
+		ownConfig.DOM.map(function(select){
 			feedInput(select, select[select.selectedIndex].innerHTML);
 		});
 	}
 
 	/**
-	 * Prepara as divs que serão utilizadas para a modal com as opções
+	 * Prepare the divs that will be used for modal with options
 	 */
 	function prepareModal(){
 
-		// verifica se já foi criado
+		// Checks has been created
 		if (document.querySelector('.pk-overlay')) {
 			return;
 		}	
@@ -226,6 +273,11 @@ var pickout = (function(){
 		var head = document.createElement('div');
 		head.setAttribute('class', 'head');
 
+		var search = document.createElement('div');
+		search.setAttribute('class', 'pk-search');	
+		var inputSearch = document.createElement('input');
+		inputSearch.setAttribute('type', 'text');
+
 		var close = document.createElement('span');
 		close.setAttribute('class', 'close');
 		close.innerHTML = '&times;';
@@ -233,6 +285,8 @@ var pickout = (function(){
 		document.body.appendChild(overlay);
 		document.body.appendChild(modal);
 		modal.appendChild(head);
+		modal.appendChild(search);
+		search.appendChild(inputSearch);
 		modal.appendChild(close);
 		modal.appendChild(mainModal);
 
@@ -254,41 +308,46 @@ var pickout = (function(){
 	}	
 
 	/**
-	 * Retoma as classes normais e remove o conteúdo de dentro da modal
+	 * Resume normal classes and removes the content from within the modal
 	 * @param  {object DOM} overlay
 	 * @param  {object DOM} modal
 	 */
 	function closeModal(){
 		var overlay = document.querySelector('.pk-overlay');
 		var modal = document.querySelector('.pk-modal');
+		var search = modal.querySelector('.pk-search');
 
 		overlay.setAttribute('class', 'pk-overlay');
 		modal.setAttribute('class', 'pk-modal');
+		search.setAttribute('class', 'pk-search');
 		setTimeout(function(){
 			modal.querySelector('.main').innerHTML = '';
 		}, 500);
 	}
 
 	/**
-	 * Mescla as configurações passadas pelo usuário com as configurações padrão do package
-	 * Adicionando suas próprias configurações
+	 * Merges the settings passed by the user with the default settings of the package, adding their own configurations
 	 */
 	function mergeToDefaults(config){
 		
-		selfConfig = JSON.parse(JSON.stringify(defaults));
+		ownConfig = JSON.parse(JSON.stringify(defaults));
 
 		for (var item in config) {
 			if (config.hasOwnProperty(item)) {
-				selfConfig[item] = config[item];
+				ownConfig[item] = config[item];
 			}
 		}
 
 	}
 
-	// Revela os métodos que serão públicos 
+	// Revealing the methods that shall be public
 	return {
 		to : init,
 		updated : setInitialValue
 	};
 
 })();
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = pickout;
+}
