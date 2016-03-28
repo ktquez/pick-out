@@ -91,7 +91,7 @@ var pickout = (function(){
 
 			config.currentIndex = index;
 			fireModal(config);
-		});
+		}, false);
 
 
 	}
@@ -148,27 +148,50 @@ var pickout = (function(){
 				e.preventDefault();
 				e.stopPropagation();
 
-				var optionDefault = optionsModal,
+				var optionsDefault = optionsModal,
 					main = modal.querySelector('.main');
 
-				// Deletes the options
-				main.innerHTML = '';
+				// Specific for IE
+				if (!!document.documentMode) {
+					optionsModal.map(function(option){
+						option.style.display = 'none';
+					});
+
+				}else {
+					// Deletes the options
+					main.innerHTML = '';
+				}
+
 
 				// If the search field is empty
 				if(!e.target.value) {
-					optionDefault.map(function(option){
+					optionsDefault.map(function(option){
+
+						// Specific for IE
+						if (!!document.documentMode) {
+							option.style.display = 'block';
+							return;
+						}
+
 						main.appendChild(option);
 					});
 					return;
-				}
+				}	 
 
 				// If any character typed
 				optionsModal.map(function(option){
 					// Recover text element
-					var txt = option.children[1].innerHTML || option.children[0].innerHTML;
+					var txt = option.children[1] || option.children[0];
 					// Compares the search with the text option
-					if(txt.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
-						main.appendChild(option);
+					if(txt.innerHTML.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
+
+						// Specific for IE
+						if (!!document.documentMode) {
+							option.style.display = 'block';
+							return;
+						}
+
+						main.appendChild(option);						
 					}
 				});
 
@@ -182,7 +205,7 @@ var pickout = (function(){
 					return;
 				}
 				
-			});
+			}, false);
 		}
 		
 	}
@@ -231,7 +254,7 @@ var pickout = (function(){
 			
 			feedInput(select, txt.innerHTML);		
 			closeModal();
-		});
+		}, false);
 
 		return item;
 	}
@@ -296,14 +319,14 @@ var pickout = (function(){
 			e.stopPropagation();
 
 			closeModal();
-		});
+		}, false);
 
 		close.addEventListener('click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
 			closeModal();
-		});
+		}, false);
 
 	}	
 
