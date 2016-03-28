@@ -67,7 +67,7 @@
 	left:0;
 	opacity:0;
 	visibility:hidden;
-	z-index:10;
+	z-index:1110;
 	transition:opacity .3s;
 }
 
@@ -85,7 +85,7 @@
 	width:280px;
 	max-height:90%;
 	overflow-y:auto;
-	z-index:11;			
+	z-index:1111;			
 	transition: all .3s;
 	visibility:hidden;		
 	background:#f2f2f2;
