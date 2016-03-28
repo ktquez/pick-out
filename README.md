@@ -144,7 +144,7 @@ pickout.to({
 It uses the updated function
 
 ```js
-pickout.updated('.label');
+pickout.updated('.city');
 ```
 
 ## Current version stable
