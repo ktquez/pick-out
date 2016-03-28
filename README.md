@@ -148,10 +148,10 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v1.1.1**
+**v1.1.3**
 
 ## ChangeLog
-**v1.1.1** 
+**v1.1.3** 
 - Search field
 
 ## Contributing
