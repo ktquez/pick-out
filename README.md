@@ -1,7 +1,7 @@
 # pickout
 Cool effect for field select on form
 
-![alt tag](https://cloud.githubusercontent.com/assets/8084606/14072318/97c66458-f495-11e5-9900-9e83734334ff.gif)
+![alt tag](https://cloud.githubusercontent.com/assets/8084606/14094288/228edae4-f52b-11e5-8b8b-705398ca0544.gif)
 
 ## How to use 
 ### npm
