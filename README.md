@@ -133,7 +133,8 @@ pickout.to({
 #### Themes
 **theme** - Modify the visual style, customized through CSS<br.
 - clean (Default) <br>
-- dark 
+- dark
+theme:false Show the select box standard html
 
 ```js
 pickout.to({
