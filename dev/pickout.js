@@ -62,8 +62,9 @@ var pickout = (function(){
 
 		// Cache self config 
 		var config = ownConfig;
-		
-		select.style.display = 'none';
+
+		if (config.theme != false)
+			select.style.display = 'none';
 
 		var parent = select.parentElement;
 		parent.setAttribute('style', 'position:relative;float:left;');
@@ -73,6 +74,7 @@ var pickout = (function(){
 		var input = document.createElement('input');
 		input.setAttribute('readonly', 'readonly');
 		input.setAttribute('class', 'pk-input -'+ config.theme);
+
 		if(!!placeholder) input.setAttribute('placeholder', placeholder);
 
 		if(parent.hasAttribute('for')) input.setAttribute('id', parent.getAttribute('for'));
@@ -80,6 +82,15 @@ var pickout = (function(){
 		// Arrow
 		var arrow = document.createElement('span');
 		arrow.setAttribute('class', 'pk-arrow -'+ config.theme);
+
+
+		if (config.theme == false)
+		{
+			input.setAttribute('class', 'pk-input pk-hide');
+			arrow.setAttribute('class', 'pk-arrow pk-hide');
+		}
+
+
 
 		parent.appendChild(input);
 		parent.appendChild(arrow);
