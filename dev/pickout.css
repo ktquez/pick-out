@@ -18,6 +18,9 @@
 	font:inherit;
 }
 
+.pk-hide{
+	display: none;
+}
 .pk-arrow{
 	position:absolute;
 	cursor:pointer;			
