@@ -209,6 +209,9 @@ var pickout = (function(){
 				// If any character typed
 				optionsDefault.map(function(option){
 
+					// Suppress console error of IE
+					if (!option.children.length) return;
+
 					// Recover text element
 					var txt = option.children[1] || option.children[0];
 
