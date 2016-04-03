@@ -89,20 +89,21 @@
 
 		// Preparar o select
 		//pickout.to('.pickout');
+		/*
+			pickout.to({
+				el:'.state',
+				theme: 'clean',
+			});
+		*/
+	
 		pickout.to({
-			el:'.city',
-			theme: 'dark', 
-			search: true
-		});
-
-		pickout.to({
-			el:'.state',
-			theme: 'clean',
+			el:'.pickout',
+			search: true,
+			noResults : 'Nenhuma opção encontrada'
 		});
 
 		// Caso o valor já venha do servidor, já atribui a seleção automaticamente
 		pickout.updated('.city');
-		
 		
 	</script>
 </body>

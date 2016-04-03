@@ -15,7 +15,36 @@ var pickout = (function(){
 	// Default values
 	var defaults = {
 		theme : 'clean',
-		search : false
+		search : false,
+		noResults : 'No Results'
+	};
+
+	/**
+	 * Utilities
+	 * Included in version 1.2.0
+	 */
+	var UTIL = {
+		create : function (tag){
+			return document.createElement(tag);
+		},
+		attr : function(el, attr, value){
+			if (!value) {
+				return el.getAttribute(attr);
+			}
+			el.setAttribute(attr, value);
+		},
+		events : function(el, type, callback) {
+			el.addEventListener(type, callback, false);
+		},
+		toArray : function(el){
+			return [].slice.call(el);
+		},
+		$ : function(selector, el) {
+			return (el || document).querySelector(selector);
+		},
+		$$ : function(selector, el) {
+			return this.toArray((el || document).querySelectorAll(selector));
+		}
 	};
 
 	/**
@@ -40,7 +69,7 @@ var pickout = (function(){
 		}
 
 		// Retrieve the DOM to be manipulated
-		objConfig.DOM = [].slice.call(document.querySelectorAll(objConfig.el));
+		objConfig.DOM = UTIL.$$(objConfig.el);
 
 		mergeToDefaults(objConfig);		
 	}
@@ -66,33 +95,32 @@ var pickout = (function(){
 		select.style.display = 'none';
 
 		var parent = select.parentElement;
-		parent.setAttribute('style', 'position:relative;float:left;');
-		var placeholder = select.getAttribute('placeholder');
+		UTIL.attr(parent, 'style', 'position:relative;float:left;');
+		var placeholder = UTIL.attr(select, 'placeholder');
 
 		// input
-		var input = document.createElement('input');
-		input.setAttribute('readonly', 'readonly');
-		input.setAttribute('class', 'pk-input -'+ config.theme);
-		if(!!placeholder) input.setAttribute('placeholder', placeholder);
+		var input = UTIL.create('input');
+		UTIL.attr(input, 'readonly', 'readonly');
+		UTIL.attr(input, 'class', 'pk-input -'+ config.theme);
+		if(!!placeholder) UTIL.attr(input, 'placeholder', placeholder);
 
-		if(parent.hasAttribute('for')) input.setAttribute('id', parent.getAttribute('for'));
+		if(parent.hasAttribute('for')) UTIL.attr(input, 'id', UTIL.attr(parent, 'for'));
 		
 		// Arrow
-		var arrow = document.createElement('span');
-		arrow.setAttribute('class', 'pk-arrow -'+ config.theme);
+		var arrow = UTIL.create('span');
+		UTIL.attr(arrow, 'class', 'pk-arrow -'+ config.theme);
 
 		parent.appendChild(input);
 		parent.appendChild(arrow);
 
 		// Event listener
-		parent.addEventListener('click', function(e){
+		UTIL.events(parent, 'click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
 			config.currentIndex = index;
 			fireModal(config);
-		}, false);
-
+		});
 
 	}
 
@@ -102,38 +130,38 @@ var pickout = (function(){
 	 */
 	function fireModal(config){
 
-		var modal = document.querySelector('.pk-modal'),
+		var modal = UTIL.$('.pk-modal'),
 			select = config.DOM[config.currentIndex],
 			data;
 
 		// modal theme
-		modal.setAttribute('class', modal.getAttribute('class')+' -'+config.theme);
+		UTIL.attr(modal, 'class', UTIL.attr(modal, 'class') + ' -' + config.theme);
 
 		// Avoid charging again when changing tab and the field gives focus again
-		var main = modal.querySelector('.main');
+		var main = UTIL.$('.main', modal);
 		if (!!main.children.length) {
 			return;
 		}
 
-		var overlay = document.querySelector('.pk-overlay');
-		var options = [].slice.call(select);
-	
+		var overlay = UTIL.$('.pk-overlay');
+		var options = UTIL.toArray(select);
+
 		var optionsModal = options.map(function(option, key){
 			data = {index: key, item: option};
 			return createOption(data, modal, config);
 		});
 
 		// Displaying overlay and modal
-		modal.setAttribute('class', modal.getAttribute('class') + ' -show');
-		overlay.setAttribute('class', overlay.getAttribute('class') + ' -show');
+		UTIL.attr(modal, 'class', UTIL.attr(modal, 'class') + ' -show');
+		UTIL.attr(overlay, 'class', UTIL.attr(overlay, 'class') + ' -show');
 
-		var title = select.hasAttribute('placeholder') ? select.getAttribute('placeholder') : 'Select to option';
-		modal.querySelector('.head').innerHTML = title;
+		var title = select.hasAttribute('placeholder') ? UTIL.attr(select, 'placeholder') : 'Select to option';
+		UTIL.$('.head', modal).innerHTML = title;
 
 		// If search
 		if(config.search) {
-			var search = modal.querySelector('.pk-search');
-			var inputSearch = search.querySelector('input');
+			var search = UTIL.$('.pk-search', modal);
+			var inputSearch = UTIL.$('input', search);
 			inputSearch.value = '';
 
 			// Focus no field search
@@ -141,19 +169,19 @@ var pickout = (function(){
 				inputSearch.focus();
 			}, 300);
 
-			search.setAttribute('class', search.getAttribute('class') + ' -show');
+			UTIL.attr(search, 'class', UTIL.attr(search, 'class') + ' -show');
 
 			// Listener
-			inputSearch.addEventListener('keyup', function(e) {
+			UTIL.events(inputSearch, 'keyup', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 
 				var optionsDefault = optionsModal,
-					main = modal.querySelector('.main');
+					main = UTIL.$('.main', modal);
 
 				// Specific for IE
 				if (!!document.documentMode) {
-					optionsModal.map(function(option){
+					optionsDefault.map(function(option){
 						option.style.display = 'none';
 					});
 
@@ -179,12 +207,14 @@ var pickout = (function(){
 				}	 
 
 				// If any character typed
-				optionsModal.map(function(option){
+				optionsDefault.map(function(option){
+
 					// Recover text element
 					var txt = option.children[1] || option.children[0];
+
 					// Compares the search with the text option
 					if(txt.innerHTML.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
-
+						
 						// Specific for IE
 						if (!!document.documentMode) {
 							option.style.display = 'block';
@@ -197,15 +227,15 @@ var pickout = (function(){
 
 				// No results
 				if (!main.children.length) {
-					var noResults = document.createElement('li');
-					noResults.setAttribute('class', 'pk-no_result_search');
-					noResults.innerHTML = 'No Results';
+					var noResults = UTIL.create('li');
+					UTIL.attr(noResults, 'class', 'pk-no_result_search');
+					noResults.innerHTML = config.noResults;
 
 					main.appendChild(noResults);
 					return;
 				}
 				
-			}, false);
+			});
 		}
 		
 	}
@@ -221,16 +251,16 @@ var pickout = (function(){
 		var select = config.DOM[config.currentIndex];		
 		var main = modal.querySelector('.main');
 
-		var item = document.createElement('li');
+		var item = UTIL.create('li');
 		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
-		item.setAttribute('class', 'pk-option '+ selected +' -'+config.theme);
+		UTIL.attr(item, 'class', 'pk-option '+ selected +' -'+config.theme);
 
-		var icon = document.createElement('span');
-		icon.setAttribute('class', 'icon');
-		icon.innerHTML = data.item.getAttribute('data-icon') || '';
+		var icon = UTIL.create('span');
+		UTIL.attr(icon, 'class', 'icon');
+		icon.innerHTML = UTIL.attr(data.item, 'data-icon') || '';
 
-		var txt = document.createElement('span');
-		txt.setAttribute('class', 'txt');
+		var txt = UTIL.create('span');
+		UTIL.attr(txt, 'class', 'txt');
 		txt.innerHTML = data.item.innerHTML;
 
 		main.appendChild(item);
@@ -238,14 +268,14 @@ var pickout = (function(){
 		item.appendChild(txt);
 
 		// Event listener
-		item.addEventListener('click', function(e){
+		UTIL.events(item, 'click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
 			// Converting to array, because it is a (object) HTMLCollection 
-			[].slice.call(select.children).map(function(item, index){
+			UTIL.toArray(select.children).map(function(item, index){
 				if (index === data.index) {
-					item.setAttribute('selected', 'selected');
+					UTIL.attr(item, 'selected', 'selected');
 					return;
 				}
 
@@ -254,7 +284,7 @@ var pickout = (function(){
 			
 			feedInput(select, txt.innerHTML);		
 			closeModal();
-		}, false);
+		});
 
 		return item;
 	}
@@ -280,29 +310,29 @@ var pickout = (function(){
 	function prepareModal(){
 
 		// Checks has been created
-		if (document.querySelector('.pk-overlay')) {
+		if (UTIL.$('.pk-overlay')) {
 			return;
 		}	
 
-		var overlay = document.createElement('div');
-		overlay.setAttribute('class', 'pk-overlay');
+		var overlay = UTIL.create('div');
+		UTIL.attr(overlay, 'class', 'pk-overlay');
 
-		var modal = document.createElement('div');
-		modal.setAttribute('class', 'pk-modal');		
+		var modal = UTIL.create('div');
+		UTIL.attr(modal, 'class', 'pk-modal');		
 
-		var mainModal = document.createElement('ul');
-		mainModal.setAttribute('class', 'main');
+		var mainModal = UTIL.create('ul');
+		UTIL.attr(mainModal, 'class', 'main');
 
-		var head = document.createElement('div');
-		head.setAttribute('class', 'head');
+		var head = UTIL.create('div');
+		UTIL.attr(head, 'class', 'head');
 
-		var search = document.createElement('div');
-		search.setAttribute('class', 'pk-search');	
-		var inputSearch = document.createElement('input');
-		inputSearch.setAttribute('type', 'text');
+		var search = UTIL.create('div');
+		UTIL.attr(search, 'class', 'pk-search');	
+		var inputSearch = UTIL.create('input');
+		UTIL.attr(inputSearch, 'type', 'text');
 
-		var close = document.createElement('span');
-		close.setAttribute('class', 'close');
+		var close = UTIL.create('span');
+		UTIL.attr(close, 'class', 'close');
 		close.innerHTML = '&times;';
 
 		document.body.appendChild(overlay);
@@ -314,19 +344,19 @@ var pickout = (function(){
 		modal.appendChild(mainModal);
 
 		// Event listener
-		overlay.addEventListener('click', function(e){
+		UTIL.events(overlay, 'click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
 			closeModal();
-		}, false);
+		});
 
-		close.addEventListener('click', function(e){
+		UTIL.events(close, 'click', function(e){
 			e.preventDefault();
 			e.stopPropagation();
 
 			closeModal();
-		}, false);
+		});
 
 	}	
 
@@ -336,15 +366,15 @@ var pickout = (function(){
 	 * @param  {object DOM} modal
 	 */
 	function closeModal(){
-		var overlay = document.querySelector('.pk-overlay');
-		var modal = document.querySelector('.pk-modal');
-		var search = modal.querySelector('.pk-search');
+		var overlay = UTIL.$('.pk-overlay');
+		var modal = UTIL.$('.pk-modal');
+		var search = UTIL.$('.pk-search', modal);
 
-		overlay.setAttribute('class', 'pk-overlay');
-		modal.setAttribute('class', 'pk-modal');
-		search.setAttribute('class', 'pk-search');
+		UTIL.attr(overlay, 'class', 'pk-overlay');
+		UTIL.attr(modal, 'class', 'pk-modal');
+		UTIL.attr(search, 'class', 'pk-search');
 		setTimeout(function(){
-			modal.querySelector('.main').innerHTML = '';
+			UTIL.$('.main', modal).innerHTML = '';
 		}, 500);
 	}
 
