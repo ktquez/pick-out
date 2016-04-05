@@ -25,7 +25,8 @@
 	bottom:0;
 	text-align:center;	
 	width:30px;	
-	padding-bottom:2px;		
+	padding-bottom:2px;	
+	font-family:Arial;	
 }
 
 .pk-arrow.-clean{
@@ -80,7 +81,7 @@
 	transform: translateX(-50%) scale(0.8,0.8);
 	left:50%;
 	top:30px;
-	border-radius:3px;
+	border-radius:6px;
 	position:absolute;
 	width:280px;
 	max-height:90%;
@@ -104,8 +105,8 @@
 }
 
 .pk-modal.-clean > .head{
-	color:#777;
-	background:#efefef;
+	color:#666;
+	background:#f6f7f8;
 }
 
 .pk-modal.-dark{
@@ -155,7 +156,7 @@
 	cursor:pointer;
 }
 
-.pk-option{
+.pk-option, .pk-option-group{
 	cursor:pointer;
 	padding:14px 10px;
 	width:calc(100% - 20px);	
@@ -181,6 +182,21 @@
 
 .pk-option:last-child{
 	border:none;
+}
+
+.pk-option-group{
+	cursor:auto;
+	font-weight: bold;
+	font-size:13px;
+	letter-spacing:1px; 
+}
+
+.pk-option-group:not(:first-child){
+	margin-top:14px;	
+}
+
+.pk-option-group.-dark{
+	color:#f2f2f2;
 }
 
 .pk-option > .icon:not(:empty){

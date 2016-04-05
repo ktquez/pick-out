@@ -148,6 +148,9 @@ var pickout = (function(){
 
 		var optionsModal = options.map(function(option, key){
 			data = {index: key, item: option};
+			if (option.parentElement.localName === 'optgroup') {
+				data.optGroup = option.parentElement;
+			}
 			return createOption(data, modal, config);
 		});
 
@@ -157,8 +160,10 @@ var pickout = (function(){
 
 		var title = select.hasAttribute('placeholder') ? UTIL.attr(select, 'placeholder') : 'Select to option';
 		UTIL.$('.head', modal).innerHTML = title;
-
-		// If search
+		
+		/**
+		 * Search
+		 */
 		if(config.search) {
 			var search = UTIL.$('.pk-search', modal);
 			var inputSearch = UTIL.$('input', search);
@@ -176,7 +181,7 @@ var pickout = (function(){
 				e.preventDefault();
 				e.stopPropagation();
 
-				var optionsDefault = optionsModal,
+				var optionsDefault = optionsModal.slice(0),
 					main = UTIL.$('.main', modal);
 
 				// Specific for IE
@@ -195,6 +200,12 @@ var pickout = (function(){
 				if(!e.target.value) {
 					optionsDefault.map(function(option){
 
+						// If there <li> that is an option group
+						if (option.length > 1) {
+							main.appendChild(option[0]);
+							option = option[1];
+						}
+
 						// Specific for IE
 						if (!!document.documentMode) {
 							option.style.display = 'block';
@@ -208,6 +219,11 @@ var pickout = (function(){
 
 				// If any character typed
 				optionsDefault.map(function(option){
+
+					// If there <li> that is an option group
+					if (option.length > 1) {
+						option = option[1];
+					}
 
 					// Suppress console error of IE
 					if (!option.children.length) return;
@@ -244,6 +260,24 @@ var pickout = (function(){
 	}
 
 	/**
+	 * Create by options group 
+	 * @param  {Object} optGroup
+	 * @param  {object} main
+	 * @param  {object} config 
+	 */
+	function createOptGroup(optGroup, main, config) {
+
+		var titleGroup = UTIL.create('li');
+		UTIL.attr(titleGroup, 'class', 'pk-option-group -'+config.theme);
+		UTIL.attr(titleGroup, 'data-opt-group', optGroup.label);
+		UTIL.attr(titleGroup, 'data-type', optGroup.localName);
+		titleGroup.innerHTML = optGroup.label.toUpperCase();
+		main.appendChild(titleGroup);
+		
+		return titleGroup;
+	}
+
+	/**
 	 * Creates options for the chosen select
 	 * @param  {Object} data = {index, option}
 	 * @param  {object DOM} modal  = Modal that will receive the list
@@ -251,8 +285,19 @@ var pickout = (function(){
 	 */
 	function createOption(data, modal, config){
 
-		var select = config.DOM[config.currentIndex];		
-		var main = modal.querySelector('.main');
+		var select = config.DOM[config.currentIndex],
+			main = modal.querySelector('.main'),
+			lists = [];
+
+		// Title Option Group
+		if (!!data.optGroup) {
+			var optCreated = UTIL.$('li[data-opt-group='+data.optGroup.label+']', main);
+
+			// Created if not exists
+			if (!optCreated) {
+				lists.push(createOptGroup(data.optGroup, main, config));
+			}
+		}
 
 		var item = UTIL.create('li');
 		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
@@ -289,7 +334,14 @@ var pickout = (function(){
 			closeModal();
 		});
 
-		return item;
+		// If it is empty, it indicates that there is no option group 
+		if (!lists.length) {
+			return item;
+		}
+
+		// If option group, returns an array
+		lists.push(item);
+		return lists;
 	}
 
 	function feedInput(select, value){
