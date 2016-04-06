@@ -1,7 +1,7 @@
 # pickout
 Cool effect for field select on form
 
-![alt tag](https://cloud.githubusercontent.com/assets/8084606/14094288/228edae4-f52b-11e5-8b8b-705398ca0544.gif)
+![alt tag](https://cloud.githubusercontent.com/assets/8084606/14335558/8d69893c-fc32-11e5-9b5f-0ece1a6e5fec.gif)
 
 ## How to use 
 ### npm
@@ -52,8 +52,9 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 ```html
 <!-- Normal use -->
 <div class="form-group">
-	<label for="city">City:</label>
-	<select name="city" id="city" class="city all" placeholder="Select to option">
+	<label for="option">Option:</label>
+	<select name="option" id="option" class="option all" placeholder="Select a option">
+	    <option value=""></option> <!-- If the check is not required, submit a default value empty -->
 		<option value="opt1">Option 1</option>
 		<option value="opt2">Option 2</option>
 		<option value="opt3">Option 3</option>
@@ -64,12 +65,13 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 
 <!-- Using with icons -->
 <div class="form-group">
-	<label for="state">State:</label>
-	<select name="state" id="state" class="state all" placeholder="Select to option">
-		<option value="opt1" data-icon="&#xe601;" >Option 1</option>
-		<option value="opt2" data-icon="&#xe602;">Option 2</option>
-		<option value="opt3" data-icon="&#xe603;">Option 3</option>
-		<option value="opt4" data-icon="&#xe604;">Option 4</option>
+	<label for="suit">Suit:</label>
+	<select name="suit" id="suit" class="suit all" placeholder="Select a suit">
+	    <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+		<option data-icon="&spades;" value="Spade">Spade</option>
+		<option data-icon="&clubs;" value="Club">Club</option>
+		<option data-icon="&hearts;" value="Heart">Heart</option>
+		<option data-icon="&diams;" value="Diamond">Diamond</option>
 	</select>		
 </div>
 ```
@@ -77,17 +79,39 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 ### Attributes
 `` data-icon `` : Icon code, for example: "e602", simply use ``data-icon="&#xe602"``;
 
+## Field selection with option group
+```html
+<!-- Option group -->
+<div class="form-group">
+	<label for="country">Country</label>
+	<select name="country" id="country" class="country all" placeholder="Select a Country">
+		<option value=""></option> <!-- If the check is not required, submit a default value empty -->
+		<optgroup label="America">
+			<option value="EUA">EUA</option>
+			<option value="Brazil" selected="selected">Brazil</option>
+			<option value="Canada">Canada</option>						
+		</optgroup>
+		<optgroup label="Europe">
+			<option value="Ireland">Ireland</option>
+			<option value="Spanish">Spanish</option>
+			<option value="Italy">Italy</option>
+			<option value="Portugal">Portugal</option>						
+		</optgroup>
+	</select>			
+</div>
+```
+
 ## Set the select
 
 ```js
-pickout.to('.city');
+pickout.to('.country');
 ```
 
 Another option
 
 ```js
 pickout.to({
-  el: '.city'
+  el: '.country'
 });
 ```
 
@@ -97,7 +121,7 @@ pickout.to({
 Field to search options within the modal, default is false
 ```js
 pickout.to({
-  el: '.state',
+  el: '.country',
   search: true
 });
 ```
@@ -132,13 +156,15 @@ pickout.to({
 
 #### Themes
 **theme** - Modify the visual style, customized through CSS<br.
-- clean (Default) <br>
-- dark 
+- clean (Default)
+
+OBS: You can check or contribute more topics customizam the pickout completely.
+[Theme styles](https://github.com/ktquez/pickout/tree/master/dist/themes)
 
 ```js
 pickout.to({
   el: '.state',
-  theme: 'dark'
+  theme: 'dark' // For dark theme, available in dir style themes
 });
 ```
 
@@ -162,9 +188,24 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v1.1.3**
+**v1.2.0**
+
+## Browser Support
+
+| <img src="https://cdn0.iconfinder.com/data/icons/jfk/512/chrome-512.png" width="50px" height="50px" alt="Chrome logo"> | <img src="https://cdn1.iconfinder.com/data/icons/appicns/513/appicns_Firefox.png" width="50px" height="50px" alt="Firefox logo"> | <img src="http://icons.iconarchive.com/icons/cornmanthe3rd/plex/512/Internet-ie-icon.png" width="50px" height="50px" alt="Internet Explorer logo"> | <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Opera_browser_logo_2013_vector.svg/512px-Opera_browser_logo_2013_vector.svg.png" width="50px" height="50px" alt="Opera logo"> | <img src="http://icons.iconarchive.com/icons/osullivanluke/orb-os-x/512/Safari-icon.png" width="50px" height="50px" alt="Safari logo"> |
+|:---:|:---:|:---:|:---:|:---:|
+| Yes ✔ | Yes ✔ | 9+ ✔ | Yes ✔ |  8+ ✔ |
+
 
 ## ChangeLog
+**v1.3.0**
+- Multiple options (In progress)
+
+**v1.2.0**
+- Support to option group
+- Optimizing for support to IE
+- Separation of style themes css files
+
 **v1.1.3** 
 - Search field
 
