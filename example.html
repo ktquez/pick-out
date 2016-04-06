@@ -36,6 +36,17 @@
 			float:left;			
 		}
 
+		.btn{
+			margin-top:20px;
+			padding:6px 14px 6px;
+			background:#1abc9c;
+			color:#fff;
+			border:none;
+			border-radius:100px;
+			font:400 14px Roboto;
+			cursor:pointer;
+		}
+
 		.field-input, select{
 			width:calc(100% - 20px);
 			float:left;
@@ -56,8 +67,9 @@
 			</h2>
 
 			<div class="form-group">
-				<h3>Country</h3>
-				<select name="city" id="city" class="country pickout" placeholder="Select a Country">
+				<label for="country"><h3>Country</h3></label>
+				<select name="country" id="country" class="country pickout" placeholder="Select a Country">
+					<option value=""></option>
 					<optgroup label="America">
 						<option value="EUA">EUA</option>
 						<option value="Brazil">Brazil</option>
@@ -74,8 +86,9 @@
 			
 						
 			<div class="form-group">
-				<h3>Suit</h3>
-				<select name="city" id="city" class="suit pickout" placeholder="Select a suit">
+				<label for="suit"><h3>Suit</h3></label>
+				<select name="suit" id="suit" class="suit pickout" placeholder="Select a suit">
+					<option value=""></option>				
 					<option data-icon="&spades;" value="Spade">Spade</option>
 					<option data-icon="&clubs;" value="Club">Club</option>
 					<option data-icon="&hearts;" value="Heart">Heart</option>
@@ -85,15 +98,22 @@
 
 			
 			<div class="form-group">
-				<h3>Options</h3>
-				<select name="state" id="state" class="state pickout" placeholder="Select a option">
+				<label for="option"><h3>Options</h3></label>
+				<select name="option" id="option" class="option pickout" placeholder="Select a option">
+					<option value=""></option> <!-- Value empty when option not selected -->		
 					<option value="opt1">option 1</option>
 					<option value="opt2">option 2</option>
 					<option value="opt3">option 3</option>
 					<option value="opt4">option 4</option>
 					<option value="opt5">option 5</option>
 				</select>			
-			</div>		
+			</div>	
+
+			<div class="form-group">
+				<button type="submit" class="btn">
+					SEND
+				</button>
+			</div>	
 		</form>
 
 	</div>
@@ -113,11 +133,10 @@
 		pickout.to({
 			el:'.pickout',
 			search: true,
-			noResults : 'Nenhuma opção encontrada'
 		});
 
 		// Caso o valor já venha do servidor, já atribui a seleção automaticamente
-		pickout.updated('.city');
+		//pickout.updated('.country');
 		
 	</script>
 </body>

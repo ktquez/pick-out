@@ -20,14 +20,21 @@ gulp.task('jshint', function(){
 });
 
 gulp.task('csslint', function(){
-	return gulp.src('./dev/*.css')
+	return gulp.src(['./dev/**/*.css', './dev/*.css'])
 		.pipe(csslint({
 			'adjoining-classes' : false,
 		}))
 		.pipe(csslint.reporter());
 });
 
-gulp.task('style', ['csslint'], function(){
+gulp.task('themes', function(){
+	return gulp.src('./dev/themes/*.css')
+		.pipe(autoPrefixer())
+		.pipe(cssmin())
+		.pipe(gulp.dest('./dist/themes/'));
+});
+
+gulp.task('style', ['csslint', 'themes'], function(){
 	return gulp.src('./dev/*.css')
 		.pipe(autoPrefixer())
 		.pipe(cssmin())

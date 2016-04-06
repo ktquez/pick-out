@@ -9,6 +9,8 @@ var pickout = (function(){
 
 	"use strict";
 
+	console.time('BMPickout');	
+
 	// Own configuration of each field select
 	var ownConfig = {};
 
@@ -119,7 +121,13 @@ var pickout = (function(){
 			e.stopPropagation();
 
 			config.currentIndex = index;
+
+			console.time('BMPickoutFireModal');	
+
 			fireModal(config);
+
+			console.timeEnd('BMPickoutFireModal');	
+
 		});
 
 	}
@@ -132,13 +140,13 @@ var pickout = (function(){
 
 		var modal = UTIL.$('.pk-modal'),
 			select = config.DOM[config.currentIndex],
+			main = UTIL.$('.main', modal),
 			data;
 
 		// modal theme
 		UTIL.attr(modal, 'class', UTIL.attr(modal, 'class') + ' -' + config.theme);
 
 		// Avoid charging again when changing tab and the field gives focus again
-		var main = UTIL.$('.main', modal);
 		if (!!main.children.length) {
 			return;
 		}
@@ -165,8 +173,9 @@ var pickout = (function(){
 		 * Search
 		 */
 		if(config.search) {
-			var search = UTIL.$('.pk-search', modal);
-			var inputSearch = UTIL.$('input', search);
+			var search = UTIL.$('.pk-search', modal),
+				inputSearch = UTIL.$('input', search);
+
 			inputSearch.value = '';
 
 			// Focus no field search
@@ -176,70 +185,46 @@ var pickout = (function(){
 
 			UTIL.attr(search, 'class', UTIL.attr(search, 'class') + ' -show');
 
+			var list = [];
+
 			// Listener
 			UTIL.events(inputSearch, 'keyup', function(e) {
 				e.preventDefault();
-				e.stopPropagation();
+				e.stopPropagation();		
 
-				var optionsDefault = optionsModal.slice(0),
-					main = UTIL.$('.main', modal);
-
-				// Specific for IE
-				if (!!document.documentMode) {
-					optionsDefault.map(function(option){
-						option.style.display = 'none';
-					});
-
-				}else {
-					// Deletes the options
-					main.innerHTML = '';
-				}
-
+				list = UTIL.$$('li', main);	
+				
+				removeAllElements(list);				
 
 				// If the search field is empty
-				if(!e.target.value) {
-					optionsDefault.map(function(option){
-
-						// If there <li> that is an option group
-						if (option.length > 1) {
+				if (!e.target.value) {
+					eraseNoResult();
+					optionsModal.map(function(option){	
+						if (Array.isArray(option)) {
 							main.appendChild(option[0]);
 							option = option[1];
 						}
-
-						// Specific for IE
-						if (!!document.documentMode) {
-							option.style.display = 'block';
-							return;
-						}
-
 						main.appendChild(option);
 					});
 					return;
-				}	 
+				}	
 
+				
 				// If any character typed
-				optionsDefault.map(function(option){
+				optionsModal.map(function(option){
 
-					// If there <li> that is an option group
-					if (option.length > 1) {
+					if (Array.isArray(option)) {
 						option = option[1];
 					}
 
-					// Suppress console error of IE
-					if (!option.children.length) return;
-
 					// Recover text element
-					var txt = option.children[1] || option.children[0];
+					var txt = (option.children[1] || option.children[0]);
+					// Supress errors in IE
+					if (!txt) return;
 
 					// Compares the search with the text option
 					if(txt.innerHTML.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
-						
-						// Specific for IE
-						if (!!document.documentMode) {
-							option.style.display = 'block';
-							return;
-						}
-
+						eraseNoResult();
 						main.appendChild(option);						
 					}
 				});
@@ -252,6 +237,23 @@ var pickout = (function(){
 
 					main.appendChild(noResults);
 					return;
+				}
+
+				function eraseNoResult(){
+					// hide No results
+					var noResult = UTIL.$('.pk-no_result_search', main);
+					if (noResult) {
+						main.removeChild(noResult);
+					}
+				}
+
+				// Remove all elements
+				function removeAllElements(list){
+					list.map(function(option){
+						if (option.parentNode) {
+							main.removeChild(option);
+						}
+					});
 				}
 				
 			});
@@ -300,8 +302,13 @@ var pickout = (function(){
 		}
 
 		var item = UTIL.create('li');
-		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
+		var selected = data.item.selected ? '-selected' : '';
 		UTIL.attr(item, 'class', 'pk-option '+ selected +' -'+config.theme);
+
+		// If empty value in option
+		if (!data.item.value) {
+			UTIL.attr(item, 'style', 'display:none;');
+		}
 
 		var icon = UTIL.create('span');
 		UTIL.attr(icon, 'class', 'icon');
@@ -321,7 +328,7 @@ var pickout = (function(){
 			e.stopPropagation();
 
 			// Converting to array, because it is a (object) HTMLCollection 
-			UTIL.toArray(select.children).map(function(item, index){
+			UTIL.toArray(select).map(function(item, index){
 				if (index === data.index) {
 					UTIL.attr(item, 'selected', 'selected');
 					return;
@@ -448,11 +455,14 @@ var pickout = (function(){
 
 	}
 
+	console.timeEnd('BMPickout');	
+
 	// Revealing the methods that shall be public
 	return {
 		to : init,
 		updated : setInitialValue
 	};
+
 
 })();
 

@@ -5,19 +5,6 @@
 	padding:8px;
 }
 
-.pk-input.-clean{
-	background:#fff;
-	border:1px solid #eee;
-	font:inherit;
-}
-
-.pk-input.-dark{
-	background:#666;
-	color: #eee;
-	border:1px solid #999;
-	font:inherit;
-}
-
 .pk-arrow{
 	position:absolute;
 	cursor:pointer;			
@@ -27,26 +14,6 @@
 	width:30px;	
 	padding-bottom:2px;	
 	font-family:Arial;	
-}
-
-.pk-arrow.-clean{
-	background:#eee;
-	color:#aaa;			
-}
-
-.pk-arrow.-dark{
-	background:#666;
-	color: #eee;
-}
-
-.pk-input.-clean:hover + .pk-arrow, .pk-arrow.-clean:hover{
-	background:#dfdfdf;
-	color:#aaa;			
-}
-
-.pk-input.-dark:hover + .pk-arrow, .pk-arrow.-dark:hover{
-	background:#000;
-	color:#ccc;			
 }
 
 .pk-arrow:before{
@@ -99,27 +66,6 @@
 	padding:20px 10px;
 }
 
-.pk-modal.-clean{
-	background:#fff;
-	border-bottom:10px solid #efefef;
-}
-
-.pk-modal.-clean > .head{
-	color:#666;
-	background:#f6f7f8;
-}
-
-.pk-modal.-dark{
-	color:#f2f2f2;
-	background:#444;
-	border-bottom:10px solid #333;	
-}
-
-.pk-modal.-dark > .head{
-	color:#f2f2f2;
-	background:#333;
-}
-
 .pk-modal.-show {
 	transform: translateX(-50%) scale(1,1);
 	visibility:visible;		
@@ -163,23 +109,6 @@
 	border-bottom:1px solid #efefef;
 }
 
-.pk-option.-clean{	
-	border-bottom:1px solid #efefef;
-}
-
-.pk-option.-dark{	
-	border-bottom:1px solid #333;
-	color:#f2f2f2;
-}
-
-.pk-option.-clean:hover, .pk-option.-clean.-selected{
-	background:#f2f2f2;			
-}
-
-.pk-option.-dark:hover, .pk-option.-dark.-selected{
-	background:#333;			
-}
-
 .pk-option:last-child{
 	border:none;
 }
@@ -193,10 +122,6 @@
 
 .pk-option-group:not(:first-child){
 	margin-top:14px;	
-}
-
-.pk-option-group.-dark{
-	color:#f2f2f2;
 }
 
 .pk-option > .icon:not(:empty){
@@ -215,4 +140,40 @@
 
 .pk-modal > .main{
 	list-style:none;
+}
+
+/* CLEAN
+---------------------------------*/
+.pk-input.-clean{
+	background:#fff;
+	border:1px solid #eee;
+	font:inherit;
+}
+
+.pk-arrow.-clean{
+	background:#eee;
+	color:#aaa;			
+}
+
+.pk-input.-clean:hover + .pk-arrow, .pk-arrow.-clean:hover{
+	background:#dfdfdf;
+	color:#aaa;			
+}
+
+.pk-modal.-clean{
+	background:#fff;
+	border-bottom:10px solid #efefef;
+}
+
+.pk-modal.-clean > .head{
+	color:#666;
+	background:#f6f7f8;
+}
+
+.pk-option.-clean{	
+	border-bottom:1px solid #efefef;
+}
+
+.pk-option.-clean:hover, .pk-option.-clean.-selected{
+	background:#f2f2f2;			
 }
