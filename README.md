@@ -36,13 +36,13 @@ Include the script
 ### Or Using CDN
 Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://cdnjs.com/libraries/pickout) to include the files in your page:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.1.3/pickout.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.0/pickout.min.css">
 ...
 </head>
 ```
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.1.3/pickout.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.0/pickout.min.js"></script>
 ...
 </body>
 ```
@@ -52,27 +52,27 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 ```html
 <!-- Normal use -->
 <div class="form-group">
-	<label for="option">Option:</label>
-	<select name="option" id="option" class="option all" placeholder="Select a option">
-	    <option value=""></option> <!-- If the check is not required, submit a default value empty -->
-		<option value="opt1">Option 1</option>
-		<option value="opt2">Option 2</option>
-		<option value="opt3">Option 3</option>
-		<option value="opt4">Option 4</option>
-	</select>		
+    <label for="option">Option:</label>
+    <select name="option" id="option" class="option all" placeholder="Select a option">
+        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+        <option value="opt1">Option 1</option>
+        <option value="opt2">Option 2</option>
+        <option value="opt3">Option 3</option>
+        <option value="opt4">Option 4</option>
+    </select>       
 </div>
 
 
 <!-- Using with icons -->
 <div class="form-group">
-	<label for="suit">Suit:</label>
-	<select name="suit" id="suit" class="suit all" placeholder="Select a suit">
-	    <option value=""></option> <!-- If the check is not required, submit a default value empty -->
-		<option data-icon="&spades;" value="Spade">Spade</option>
-		<option data-icon="&clubs;" value="Club">Club</option>
-		<option data-icon="&hearts;" value="Heart">Heart</option>
-		<option data-icon="&diams;" value="Diamond">Diamond</option>
-	</select>		
+    <label for="suit">Suit:</label>
+    <select name="suit" id="suit" class="suit all" placeholder="Select a suit">
+        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+        <option data-icon="&spades;" value="Spade">Spade</option>
+        <option data-icon="&clubs;" value="Club">Club</option>
+        <option data-icon="&hearts;" value="Heart">Heart</option>
+        <option data-icon="&diams;" value="Diamond">Diamond</option>
+    </select>       
 </div>
 ```
 
@@ -83,21 +83,21 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 ```html
 <!-- Option group -->
 <div class="form-group">
-	<label for="country">Country</label>
-	<select name="country" id="country" class="country all" placeholder="Select a Country">
-		<option value=""></option> <!-- If the check is not required, submit a default value empty -->
-		<optgroup label="America">
-			<option value="EUA">EUA</option>
-			<option value="Brazil" selected="selected">Brazil</option>
-			<option value="Canada">Canada</option>						
-		</optgroup>
-		<optgroup label="Europe">
-			<option value="Ireland">Ireland</option>
-			<option value="Spanish">Spanish</option>
-			<option value="Italy">Italy</option>
-			<option value="Portugal">Portugal</option>						
-		</optgroup>
-	</select>			
+    <label for="country">Country</label>
+    <select name="country" id="country" class="country all" placeholder="Select a Country">
+        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+        <optgroup label="America">
+            <option value="EUA">EUA</option>
+            <option value="Brazil" selected="selected">Brazil</option>
+            <option value="Canada">Canada</option>                      
+        </optgroup>
+        <optgroup label="Europe">
+            <option value="Ireland">Ireland</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Italy">Italy</option>
+            <option value="Portugal">Portugal</option>                      
+        </optgroup>
+    </select>           
 </div>
 ```
 
@@ -138,10 +138,10 @@ To customize, simply add in your CSS rule with this pattern:<br>
 
 ```css
 .pk-input.-MySelector{
-	// my customization	
+    // my customization 
 }
 .pk-arrow.-MySelector{
-	// my customization	
+    // my customization 
 }
 ```
 
@@ -155,7 +155,7 @@ pickout.to({
 ```
 
 #### Themes
-**theme** - Modify the visual style, customized through CSS<br.
+**theme** - Modify the visual style, customized through CSS.
 - clean (Default)
 
 OBS: You can check or contribute more topics customizam the pickout completely.
@@ -172,12 +172,12 @@ pickout.to({
 
 ```html
 <div class="form-group">
-	<label for="state">State:</label>
-	<select name="state" id="state" class="state all" placeholder="Select to option">
-	  <!-- Option selected by default -->
-		<option value="opt1" selected>Option 1</option>
-		<option value="opt2">Option 2</option>
-	</select>		
+    <label for="state">State:</label>
+    <select name="state" id="state" class="state all" placeholder="Select to option">
+      <!-- Option selected by default -->
+        <option value="opt1" selected>Option 1</option>
+        <option value="opt2">Option 2</option>
+    </select>       
 </div>
 ```
 
