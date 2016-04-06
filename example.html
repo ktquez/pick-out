@@ -63,11 +63,11 @@
 		
 		<form action="#" method="post">
 			<h2>
-			FORMULÁRIO
+			FORM EXAMPLE
 			</h2>
 
 			<div class="form-group">
-				<label for="country"><h3>Country</h3></label>
+				<label for="country"><h3>Select --support optgroup</h3></label>
 				<select name="country" id="country" class="country pickout" placeholder="Select a Country">
 					<option value=""></option>
 					<optgroup label="America">
@@ -86,7 +86,7 @@
 			
 						
 			<div class="form-group">
-				<label for="suit"><h3>Suit</h3></label>
+				<label for="suit"><h3>Select --support search</h3></label>
 				<select name="suit" id="suit" class="suit pickout" placeholder="Select a suit">
 					<option value=""></option>				
 					<option data-icon="&spades;" value="Spade">Spade</option>
@@ -98,8 +98,8 @@
 
 			
 			<div class="form-group">
-				<label for="option"><h3>Options</h3></label>
-				<select name="option" id="option" class="option pickout" placeholder="Select a option">
+				<label for="option"><h3>Select --simple</h3></label>
+				<select name="option" id="option" class="option" placeholder="Select a option">
 					<option value=""></option> <!-- Value empty when option not selected -->		
 					<option value="opt1">option 1</option>
 					<option value="opt2">option 2</option>
@@ -121,21 +121,18 @@
 	<script src="./dev/pickout.js"></script>
 	<script>
 
-		// Preparar o select
-		//pickout.to('.pickout');
-		/*
-			pickout.to({
-				el:'.state',
-				theme: 'clean',
-			});
-		*/
-	
+		// With Search
 		pickout.to({
 			el:'.pickout',
-			search: true,
+			search: true
 		});
 
-		// Caso o valor já venha do servidor, já atribui a seleção automaticamente
+
+		// Simple
+		pickout.to('.option');
+
+
+		// Value default
 		pickout.updated('.country');
 		
 	</script>
