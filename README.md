@@ -36,13 +36,13 @@ Include the script
 ### Or Using CDN
 Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://cdnjs.com/libraries/pickout) to include the files in your page:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.0/pickout.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.1/pickout.min.css">
 ...
 </head>
 ```
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.0/pickout.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.1/pickout.min.js"></script>
 ...
 </body>
 ```
@@ -188,7 +188,7 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v1.2.0**
+**v1.2.1**
 
 ## Browser Support
 
@@ -200,6 +200,10 @@ pickout.updated('.city');
 ## ChangeLog
 **v1.3.0**
 - Multiple options (In progress)
+
+**v1.2.1**
+- New Style theme 
+- Correction in modal css
 
 **v1.2.0**
 - Support to option group
