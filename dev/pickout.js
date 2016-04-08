@@ -100,19 +100,19 @@ var pickout = (function(){
 		UTIL.attr(parent, 'style', 'position:relative;float:left;');
 		var placeholder = UTIL.attr(select, 'placeholder');
 
-		// input
-		var input = UTIL.create('input');
-		UTIL.attr(input, 'readonly', 'readonly');
-		UTIL.attr(input, 'class', 'pk-input -'+ config.theme);
-		if(!!placeholder) UTIL.attr(input, 'placeholder', placeholder);
+		// Visual element simule field input
+		var field = UTIL.create('div');
+		UTIL.attr(field, 'readonly', 'readonly');
+		UTIL.attr(field, 'class', 'pk-field -'+ config.theme);
+		if(!!placeholder) field.innerHTML = placeholder;
 
-		if(parent.hasAttribute('for')) UTIL.attr(input, 'id', UTIL.attr(parent, 'for'));
+		if(parent.hasAttribute('for')) UTIL.attr(field, 'id', UTIL.attr(parent, 'for'));
 		
 		// Arrow
 		var arrow = UTIL.create('span');
 		UTIL.attr(arrow, 'class', 'pk-arrow -'+ config.theme);
 
-		parent.appendChild(input);
+		parent.appendChild(field);
 		parent.appendChild(arrow);
 
 		// Event listener
@@ -337,7 +337,7 @@ var pickout = (function(){
 				item.removeAttribute('selected');
 			});
 			
-			feedInput(select, txt.innerHTML);		
+			feedField(select, txt.innerHTML);		
 			closeModal();
 		});
 
@@ -351,8 +351,8 @@ var pickout = (function(){
 		return lists;
 	}
 
-	function feedInput(select, value){
-		select.parentElement.querySelector('.pk-input').value = value;
+	function feedField(select, value){
+		select.parentElement.querySelector('.pk-field').innerHTML = value;
 	}
 
 	/**
@@ -362,7 +362,7 @@ var pickout = (function(){
 		setElement(config);	
 
 		ownConfig.DOM.map(function(select){
-			feedInput(select, select[select.selectedIndex].innerHTML);
+			feedField(select, select[select.selectedIndex].innerHTML);
 		});
 	}
 

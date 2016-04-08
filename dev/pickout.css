@@ -1,4 +1,4 @@
-.pk-input {
+.pk-field {
 	width:calc(100% - 16px);
 	float:left;
 	cursor:pointer;			
@@ -149,7 +149,7 @@
 
 /* CLEAN
 ---------------------------------*/
-.pk-input.-clean{
+.pk-field.-clean{
 	background:#fff;
 	border:1px solid #eee;
 	font:inherit;
@@ -160,7 +160,7 @@
 	color:#aaa;			
 }
 
-.pk-input.-clean:hover + .pk-arrow, .pk-arrow.-clean:hover{
+.pk-field.-clean:hover + .pk-arrow, .pk-arrow.-clean:hover{
 	background:#dfdfdf;
 	color:#aaa;			
 }

@@ -1,6 +1,6 @@
 /* DARK
 ---------------------------------*/
-.pk-input.-cricket{
+.pk-field.-cricket{
 	background:#545965;
 	color: #eee;
 	border:1px solid #999;
@@ -12,7 +12,7 @@
 	color: #fff;
 }
 
-.pk-input.-cricket:hover + .pk-arrow, .pk-arrow.-cricket:hover{
+.pk-field.-cricket:hover + .pk-arrow, .pk-arrow.-cricket:hover{
 	background:#414653;
 	color:#55c88c;			
 }
