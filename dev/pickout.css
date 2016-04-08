@@ -3,6 +3,7 @@
 	float:left;
 	cursor:pointer;			
 	padding:8px;
+	border-radius:5px;
 }
 
 .pk-arrow{
@@ -13,7 +14,8 @@
 	text-align:center;	
 	width:30px;	
 	padding-bottom:2px;	
-	font-family:Arial;	
+	font-family:Arial;
+	border-radius:0 5px 5px 0;			
 }
 
 .pk-arrow:before{
@@ -51,8 +53,6 @@
 	border-radius:6px;
 	position:absolute;
 	width:280px;
-	max-height:90%;
-	overflow-y:auto;
 	z-index:1111;			
 	transition: all .3s;
 	visibility:hidden;		
@@ -60,17 +60,26 @@
 	opacity:0;
 }
 
+.pk-modal > .main{
+	list-style:none;
+	max-height:70vh;
+	position:relative;
+	overflow-y:auto;
+	width:100%;
+}
+
 .pk-modal > .head{
 	width:calc(100% - 20px);
 	font-size:18px;
 	padding:20px 10px;
+	border-radius: 4px 4px 0 0;
 }
 
 .pk-modal.-show {
 	transform: translateX(-50%) scale(1,1);
 	visibility:visible;		
 	opacity:1;
-	box-shadow: 1px 1px 20px 2px #888;
+	box-shadow:0 30px 10px -20px #777;
 }
 
 .pk-search{
@@ -82,7 +91,7 @@
 }
 
 .pk-search > input{
-	width:calc(100% - 22px);
+	width:calc(100% - 12px);
 	padding:8px 4px;
 	margin:6px;
 	border:1px solid #ddd;
@@ -136,10 +145,6 @@
 
 .pk-option > .txt{
 	color:inherit;
-}
-
-.pk-modal > .main{
-	list-style:none;
 }
 
 /* CLEAN

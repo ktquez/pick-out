@@ -1,0 +1,65 @@
+/* DARK
+---------------------------------*/
+.pk-input.-cricket{
+	background:#545965;
+	color: #eee;
+	border:1px solid #999;
+	font:inherit;
+}
+
+.pk-arrow.-cricket{
+	background:#55c88c;
+	color: #fff;
+}
+
+.pk-input.-cricket:hover + .pk-arrow, .pk-arrow.-cricket:hover{
+	background:#414653;
+	color:#55c88c;			
+}
+
+.pk-modal.-cricket{
+	background:#545965;
+	border-bottom:20px solid #414653;	
+}
+
+.pk-modal > .close{
+	color:#fff;	
+}
+
+.pk-modal.-cricket > .head{
+	color:#fff;
+	font-weight:700;
+	text-transform: uppercase;
+	background:#55c88c;
+	position:relative;
+}
+
+.pk-modal.-cricket > .head:before{
+	content:'';
+	position: absolute;
+	border:10px solid transparent;
+	border-top-color:#55c88c;
+	bottom:-18px;
+}
+
+.pk-search{
+	margin-top:15px;
+}
+
+.pk-no_result_search{
+	color:#fff;
+}
+
+.pk-option.-cricket{	
+	border-bottom:1px solid #414653;
+	color:#fff;
+}
+
+.pk-option.-cricket:hover, .pk-option.-cricket.-selected{
+	background:#414653;			
+}
+
+.pk-option-group.-cricket{
+	color:#fff;
+	border-bottom:1px solid #414653;	
+}
