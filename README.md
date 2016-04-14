@@ -1,8 +1,6 @@
 # pickout
 Cool effect for field select on form
 
-![alt tag](https://cloud.githubusercontent.com/assets/8084606/14335558/8d69893c-fc32-11e5-9b5f-0ece1a6e5fec.gif)
-
 ## How to use 
 ### npm
 
@@ -36,13 +34,13 @@ Include the script
 ### Or Using CDN
 Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://cdnjs.com/libraries/pickout) to include the files in your page:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.1/pickout.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.0/pickout.min.css">
 ...
 </head>
 ```
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.2.1/pickout.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.0/pickout.min.js"></script>
 ...
 </body>
 ```
@@ -133,6 +131,41 @@ You can assign to selects separately, however you can apply all at once, simply 
 pickout.to('.all');
 ```
 
+## Selecting multiple options
+Simply enter the **multiple** HTML attribute in the field select what you want
+```html
+<div class="form-group">
+    <label for="Skills"><h3>Your skills</h3></label>
+    <select name="skills[]" id="skills" multiple class="skills" placeholder="Add your Skills">
+        <option value=""></option> <!-- If the check is not required, submit a default value empty -->     
+        <option value="PHP">PHP</option>
+        <option value="Ruby">Ruby</option>
+        <option value="C++">C++</option>
+        <option value="Scrum">Scrum</option>
+        <option value="Java">Java</option>
+        <option value="Cobol">Cobol</option>
+        <option value="Javascript">Javascript</option>
+        <option value="AngularJS">AngularJS</option>
+        <option value="Ionic">Ionic</option>
+        <option value="VueJS">VueJS</option>
+        <option value="ReactJS">ReactJS</option>
+        <option value="React Native">React Native</option>
+    </select>           
+</div>
+```
+
+to set the select to pickout
+```js
+pickout.to('.skills');
+```
+
+**For options already selected by default, uses the method**
+```js
+pickout.updatedMultiple('.skills');
+```
+With this method the pickout already initializes the tags of options with the selected attribute
+
+
 ### Customize styles
 To customize, simply add in your CSS rule with this pattern:<br>
 
@@ -188,7 +221,7 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v1.2.1**
+**v1.3.0**
 
 ## Browser Support
 
@@ -198,8 +231,9 @@ pickout.updated('.city');
 
 
 ## ChangeLog
+
 **v1.3.0**
-- Multiple options (In progress)
+- Multiple options
 
 **v1.2.1**
 - New Style theme 
