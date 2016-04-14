@@ -41,3 +41,41 @@
 	color:#f2f2f2;
 	border-bottom:1px solid #333;	
 }
+
+.pk-btnMultiply.-dark{
+	background:#333;
+	color:#fff;
+}
+
+.pk-btnMultiply.-dark:hover{
+	background:#000;
+}
+
+.pk-circle.-dark{
+	border:1px solid #ccc;	
+	border-color:#ddd;
+}
+
+.pk-option.-selected > .pk-circle.-dark{
+	background:#333;
+	border:2px solid #fff;
+}
+
+.pk-tag.-dark > .txt{
+	background:#333;
+	color:#fff;
+}
+
+.pk-tag.-dark > .txt:before{
+	border-right-color: #666;
+}
+
+.pk-tag.-dark > .close{
+	background:#333;
+	color:#f2f2f2;
+}
+
+.pk-tag.-dark > .close:hover{
+	background:#ddd;
+	color:#666;
+}

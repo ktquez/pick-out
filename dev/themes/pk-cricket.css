@@ -1,4 +1,9 @@
-/* DARK
+/* CRICKET
+
+midnight =  #545965
+midnight dark =  #414653
+green = #55c88c
+
 ---------------------------------*/
 .pk-field.-cricket{
 	background:#545965;
@@ -22,7 +27,12 @@
 	border-bottom:20px solid #414653;	
 }
 
-.pk-modal > .close{
+.pk-modal.-multiple{
+	background:#545965;
+	border:none;
+}
+
+.pk-modal.-cricket > .close{
 	color:#fff;	
 }
 
@@ -62,4 +72,42 @@
 .pk-option-group.-cricket{
 	color:#fff;
 	border-bottom:1px solid #414653;	
+}
+
+.pk-btnMultiply.-cricket{
+	background:#55c88c;
+	color:#fff;
+}
+
+.pk-btnMultiply.-cricket:hover{
+	background:#414653;
+}
+
+.pk-circle.-cricket{
+	border:1px solid #ccc;	
+	border-color:#ddd;
+}
+
+.pk-option.-selected > .pk-circle.-cricket{
+	background:#55c88c;
+	border:2px solid #545965;
+}
+
+.pk-tag.-cricket > .txt{
+	background:#55c88c;
+	color:#fff;
+}
+
+.pk-tag.-cricket > .txt:before{
+	border-right-color: #545965;
+}
+
+.pk-tag.-cricket > .close{
+	background:#414653;
+	color:#55c88c;
+}
+
+.pk-tag.-cricket > .close:hover{
+	background:#55c88c;
+	color:#414653;
 }
