@@ -55,8 +55,6 @@
 
 	</style>
 	<link rel="stylesheet" href="./dev/pickout.css">
-	<link rel="stylesheet" href="./dev/themes/pk-cricket.css">
-	<link rel="stylesheet" href="./dev/themes/pk-dark.css">
 </head>
 <body>
 	
@@ -97,6 +95,25 @@
 				</select>			
 			</div>
 
+			<div class="form-group">
+				<label for="Skills"><h3>Select --support Multiple options</h3></label>
+				<select name="skills[]" id="skills" multiple class="skills pickout" placeholder="Add your Skills">
+					<option value=""></option>				
+					<option value="PHP">PHP</option>
+					<option value="Javascript">Javascript</option>
+					<option value="Ruby">Ruby</option>
+					<option value="C++">C++</option>
+					<option value="Scrum">Scrum</option>
+					<option value="AngularJS">AngularJS</option>
+					<option value="ReactJS">ReactJS</option>
+					<option value="Java">Java</option>
+					<option value="VueJS">VueJS</option>
+					<option value="Cobol">Cobol</option>
+					<option value="Ionic">Ionic</option>
+					<option value="React Native">React Native</option>
+				</select>			
+			</div>
+
 			
 			<div class="form-group">
 				<label for="option"><h3>Select --simple</h3></label>
@@ -126,7 +143,7 @@
 		pickout.to({
 			el:'.pickout',
 			search: true,
-			theme: 'cricket'
+			txtBtnMultiple: 'CONFIRMAR SELECIONADAS'
 		});
 
 
