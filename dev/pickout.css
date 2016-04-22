@@ -55,7 +55,7 @@
 	left:50%;
 	top:10px;
 	border-radius:6px;
-	position:absolute;
+	position:fixed;
 	width:280px;
 	z-index:1111;			
 	transition: all .3s;
@@ -70,6 +70,13 @@
 	position:relative;
 	overflow-y:auto;
 	width:100%;
+	margin:0;
+}
+
+@media(max-width: 480px) {
+	.pk-modal > .main{
+		max-height:70vh;
+	}
 }
 
 .pk-modal > .head{
@@ -95,7 +102,7 @@
 }
 
 .pk-search > input{
-	width:calc(100% - 12px);
+	width:calc(100% - 22px);
 	padding:8px 4px;
 	margin:6px;
 	border:1px solid #ddd;
@@ -127,6 +134,10 @@
 	border:none;
 }
 
+.pk-option.-selected:last-child{
+	border-radius: 0 0 4px 4px;	
+}
+
 .pk-option-group{
 	cursor:auto;
 	font-weight: bold;
@@ -148,8 +159,10 @@
 	text-align:center;
 }
 
-.pk-option > .txt{
-	color:inherit;
+.pk-option > .txt{	
+	font-size:14px;
+	font-weight:300;
+	letter-spacing:1.2px;
 }
 
 .pk-multiple{
@@ -253,7 +266,12 @@
 }
 
 .pk-option.-clean:hover, .pk-option.-clean.-selected{
+	border-radius: 0 0 4px 4px;	
 	background:#f2f2f2;			
+}
+
+.pk-no_result_search.-clean{
+	color:#666;
 }
 
 .pk-btnMultiply.-clean{

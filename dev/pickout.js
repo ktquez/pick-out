@@ -35,6 +35,14 @@ var pickout = (function(){
 			if (!value) {
 				return el.getAttribute(attr);
 			}
+
+			if (Array.isArray(el)) {
+				el.forEach(function(element) {
+					element.setAttribute(attr, value);					
+				});
+				return;
+			}
+
 			el.setAttribute(attr, value);
 		},
 		events : function(el, type, callback) {
@@ -278,6 +286,7 @@ var pickout = (function(){
 				if (!main.children.length) {
 					var noResults = _.create('li');
 					_.addClass(noResults, 'pk-no_result_search');
+					_.addClass(noResults, '-'+config.theme);
 					noResults.innerHTML = config.noResults;
 
 					main.appendChild(noResults);
@@ -347,7 +356,7 @@ var pickout = (function(){
 		}
 
 		var item = _.create('li');
-		var selected = data.item.selected ? '-selected' : '';
+		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
 		_.addClass(item, 'pk-option '+ selected +' -'+config.theme);
 
 		// Add circle for assign multiple options
@@ -575,10 +584,10 @@ var pickout = (function(){
 		_.attr(inputSearch, 'type', 'text');
 
 		var multiple = _.create('div');
-		_.addClass(multiple, 'pk-multiple -'+ownConfig.theme);
+		_.addClass(multiple, 'pk-multiple');
 
 		var btnMultiple = _.create('button');
-		_.addClass(btnMultiple, 'pk-btnMultiply -'+ownConfig.theme);
+		_.addClass(btnMultiple, 'pk-btnMultiply');
 		btnMultiple.innerHTML = ownConfig.txtBtnMultiple;
 
 		var close = _.create('span');
@@ -618,8 +627,10 @@ var pickout = (function(){
 		var search = _.$('.pk-search', modal);
 		var multiple = _.$('.pk-multiple', modal);
 
-		_.rmClass([overlay, modal, search, multiple], '-show');
-		_.rmClass([modal, search, multiple], '-clean');
+		_.attr(modal, 'class', 'pk-modal');
+		_.attr(multiple, 'class', 'pk-multiple');
+		_.attr(search, 'class', 'pk-search');
+		_.attr(overlay, 'class', 'pk-overlay');
 
 		setTimeout(function(){
 			_.$('.main', modal).innerHTML = '';
