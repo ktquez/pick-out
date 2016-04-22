@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>
+		Pickout - Cool and powerful effect to select fields. Javascript vanilla and &lt;2kb gzipped
+	</title>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css">
+	<link rel="stylesheet" href="./assets/pickout/pickout.css">
+	<link rel="stylesheet" href="./assets/pickout/themes/pk-cricket.css">
+	<link rel="stylesheet" href="./assets/style.min.css">
+
+</head>
+<body>
+		
+	<header class="header fullX" role="banner">
+		<div class="ribbom_github">
+			<a href="https://github.com/ktquez/pickout">
+				<img src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
+			</a>
+		</div>
+	
+		<div class="fullX box-top centerY">
+			<div class="box-center9 top">				
+				<h1 class="title fullX">PICKOUT</h1>
+				<p class="subtitle fullX">
+					Cool and powerful effect to select fields. Javascript vanilla and &lt; 2kb gzipped.
+				</p>
+				
+				<div class="box-btn centerX">
+					<a class="btn_down" href="https://github.com/ktquez/pickout">DOWNLOAD</a>
+					
+					<div class="fl" style="margin-right:10px;">						
+						<a href="https://twitter.com/share" class="twitter-share-button fl" data-url="http://ktquez.github.io/pickout" data-text="Pickout - Cool and powerful effect to select fields. Javascript vanilla and &lt;2kb gzipped" data-via="ktquez">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+					</div>
+
+					<div class="btn_stars_gh">
+						<iframe src="https://ghbtns.com/github-btn.html?user=ktquez&amp;repo=pickout&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</header>
+
+	<main class="main fullX" role="main">
+		
+		<section class="box-center6">
+
+			<div class="how-using fullX">
+				<header>
+					<h2 class="title">How to use</h2>
+				</header>
+
+				<div class="block fullX">
+					<h3>NPM</h3>
+					<pre><code class="language-markup">npm install pickout --save</code></pre>
+				</div>
+
+				<div class="block fullX">
+					<h3>By CDNJS</h3>
+					<pre><code class="language-markup">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.1/pickout.min.css">
+...
+&lt;/head></code></pre>
+
+					<pre><code class="language-markup">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.1/pickout.min.js"></script>
+...
+&lt;/head></code></pre>
+				</div>
+
+				<a class="link margin" href="https://github.com/ktquez/pickout/#how-to-use">For more options, please access the repository</a>
+
+			</div>
+
+		</section>
+
+		<section class="examples fullX">
+				
+			<h2 class="title-bg-section fullX">
+				Examples
+			</h2>
+
+			<div class="box-center6">		
+				
+				<div class="box_example fullX">					
+					<h3 class="title_feature fullX">Normal use (using theme default clean)</h3>
+					
+					<div class="code fullX">
+						<pre><code class="language-markup">&lt;!-- Normal use -->
+&lt;div class="form-group">
+&lt;label for="option">Option:&lt;/label>
+&lt;select name="option" id="option" class="option all" placeholder="Select a option">
+    &lt;option value="">&lt;/option> &lt;!-- If the check is not required, submit a default value empty -->
+    &lt;option value="opt1">Option 1&lt;/option>
+    &lt;option value="opt2">Option 2&lt;/option>
+    &lt;option value="opt3">Option 3&lt;/option>
+    &lt;option value="opt4">Option 4&lt;/option>
+&lt;/select>       
+&lt;/div></code></pre>
+
+					<pre><code class="language-javascript">// javaScript
+pickout.to('.option');</code></pre>
+
+					<div class="fullX">
+						<b>Options selected for default, uses the updated function</b>
+						<pre><code class="language-js">pickout.updated('.option');</code></pre>
+					</div>
+
+					</div>
+					<div class="c-m12 c-t6 cpl action">
+
+						<h4 class="title_demo fullX">Demo:</h4>
+						<!-- Normal use -->
+						<div class="form-group fullX">
+						    <select name="option" id="option" class="option" placeholder="Select a option">
+						        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+						        <option value="opt1">Option 1</option>
+						        <option value="opt2">Option 2</option>
+						        <option value="opt3">Option 3</option>
+						        <option value="opt4">Option 4</option>
+						    </select>       
+						</div>
+					</div>
+				</div>
+
+				<div class="box_example fullX">					
+					<h3 class="title_feature fullX">Support search (using theme default clean)</h3>
+
+					<div class="code fullX">
+						<pre><code class="language-markup">&lt;!-- Using with icons -->
+&lt;div class="form-group">
+    &lt;label for="suit">Suit:&lt;/label>
+    &lt;select name="suit" id="suit" class="suit all" placeholder="Select a suit">
+        &lt;option value="">&lt;/option> &lt;!-- If the check is not required, submit a default value empty -->
+        &lt;option data-icon="&spades;" value="Spade">Spade&lt;/option>
+        &lt;option data-icon="&clubs;" value="Club">Club&lt;/option>
+        &lt;option data-icon="&hearts;" value="Heart">Heart&lt;/option>
+        &lt;option data-icon="&diams;" value="Diamond">Diamond&lt;/option>
+    &lt;/select>       
+&lt;/div></code></pre>
+					
+					<pre><code class="language-javascript">// javaScript
+pickout.to({
+	'el': '.suit',
+	'search': true,
+	'noResults': 'RESULTADO NÃO ENCONTRADO'
+});</code></pre>
+					</div>
+					<div class="c-m12 c-t6 cpl action">
+
+						<h4 class="title_demo fullX">Demo:</h4>						
+						<!-- Using Search with icons -->
+						<div class="form-group fullX">
+						    <select name="suit" id="suit" class="suit all" placeholder="Select a suit">
+						        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+						        <option data-icon="&spades;" value="Spade">Spade</option>
+						        <option data-icon="&clubs;" value="Club">Club</option>
+						        <option data-icon="&hearts;" value="Heart">Heart</option>
+						        <option data-icon="&diams;" value="Diamond">Diamond</option>
+						    </select>       
+						</div>
+					</div>
+				</div>
+
+				<div class="box_example fullX">					
+					<h3 class="title_feature fullX">Support option group (using theme Cricket)</h3>
+
+					<div class="code fullX">
+						<pre><code class="language-markup">&lt;!-- Option group -->
+&lt;div class="form-group">
+&lt;label for="country">Country&lt;/label>
+&lt;select name="country" id="country" class="country all" placeholder="Select a Country">
+    &lt;option value="">&lt;/option> &lt;!-- If the check is not required, submit a default value empty -->
+    &lt;optgroup label="America">
+        &lt;option value="EUA">EUA&lt;/option>
+        &lt;option value="Brazil">Brazil&lt;/option>
+        &lt;option value="Canada">Canada&lt;/option>                      
+    &lt;/optgroup>
+    &lt;optgroup label="Europe">
+        &lt;option value="Ireland">Ireland&lt;/option>
+        &lt;option value="Spanish">Spanish&lt;/option>
+        &lt;option value="Italy">Italy&lt;/option>
+        &lt;option value="Portugal">Portugal&lt;/option>                      
+    &lt;/optgroup>
+&lt;/select>           
+&lt;/div></code></pre>
+
+					<pre><code class="language-javascript">// javaScript
+pickout.to({
+	'el': '.country',
+	'theme': cricket
+});</code></pre>
+					</div>
+					<div class="c-m12 c-t6 cpl action">
+
+						<h4 class="title_demo fullX">Demo:</h4>
+						<!-- Option group -->
+						<div class="form-group fullX">
+						    <select name="country" id="country" class="country all" placeholder="Select a Country">
+						        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+						        <optgroup label="America">
+						            <option value="EUA">EUA</option>
+						            <option value="Brazil">Brazil</option>
+						            <option value="Canada">Canada</option>                      
+						        </optgroup>
+						        <optgroup label="Europe">
+						            <option value="Ireland">Ireland</option>
+						            <option value="Spanish">Spanish</option>
+						            <option value="Italy">Italy</option>
+						            <option value="Portugal">Portugal</option>                      
+						        </optgroup>
+						    </select>           
+						</div>
+					</div>
+				</div>
+
+				<div class="box_example fullX">					
+					<h3 class="title_feature fullX">Support multiple options (using theme Cricket)</h3>
+
+					<div class="code fullX">
+						<pre><code class="language-markup">&lt;!-- Option group -->
+&lt;div class="form-group fullX">
+    &lt;label for="Skills">&lt;h3>Your skills&lt;/h3>&lt;/label>
+    &lt;select name="skills[]" id="skills" multiple class="skills" placeholder="Add your Skills">
+        &lt;option value="">&lt;/option> &lt;!-- If the check is not required, submit a default value empty -->     
+        &lt;option value="PHP">PHP&lt;/option>
+        &lt;option value="Ruby">Ruby&lt;/option>
+        &lt;option value="C++">C++&lt;/option>
+        &lt;option value="Python">Python&lt;/option>
+        &lt;option value="Java">Java&lt;/option>
+        &lt;option value="Cobol">Cobol&lt;/option>
+        &lt;option value="Javascript">Javascript&lt;/option>
+        &lt;option value="AngularJS">AngularJS&lt;/option>
+        &lt;option value="Ionic">Ionic&lt;/option>
+        &lt;option value="VueJS">VueJS&lt;/option>
+        &lt;option value="ReactJS">ReactJS&lt;/option>
+        &lt;option value="React Native">React Native&lt;/option>
+    &lt;/select>           
+&lt;/div></code></pre>
+
+					<pre><code class="language-javascript">// javaScript
+pickout.to({
+	'el': '.skills',
+	'theme': cricket
+});</code></pre>
+
+					
+					<div class="fullX">
+						<b>For options already selected by default, uses the method</b>
+						<pre><code class="language-js">pickout.updatedMultiple({
+	'el': '.skills',
+	'theme': 'cricket'
+});</code></pre>
+					</div>
+
+					</div>
+					<div class="c-m12 c-t6 cpl action">
+
+						<h4 class="title_demo fullX">Demo:</h4>
+						<!-- Option group -->
+						<div class="form-group fullX">
+						    <label for="Skills"><h3>Your skills</h3></label>
+						    <select name="skills[]" id="skills" multiple class="skills" placeholder="Add your Skills">
+						        <option value=""></option> <!-- If the check is not required, submit a default value empty -->     
+						        <option value="PHP">PHP</option>
+						        <option value="Ruby">Ruby</option>
+						        <option value="C++">C++</option>
+						        <option value="Python">Python</option>
+						        <option value="Java">Java</option>
+						        <option value="Cobol">Cobol</option>
+						        <option value="Javascript">Javascript</option>
+						        <option value="AngularJS">AngularJS</option>
+						        <option value="Ionic">Ionic</option>
+						        <option value="VueJS">VueJS</option>
+						        <option value="ReactJS">ReactJS</option>
+						        <option value="React Native">React Native</option>
+						    </select>           
+						</div>
+					</div>
+				</div>
+				<a class="link margin" href="https://github.com/ktquez/pickout/#how-to-use">For more options, please access the repository</a>
+
+			</div>
+
+		</section>
+
+	</main>
+
+	<footer class="footer fullX" role="contentinfo">
+		
+		<div class="c-m12 c-t7 cpl centerX tac">
+			<span class="fullX">Pickout by <a title="Following on Twitter" href="https://twitter.com/ktquez">@ktquez</a></span>
+			<span class="fullX">Any feedback on issues or compatibility problems in certain browsers is greatly appreciated, please <a title"leave it at my github page" href="https://github.com/ktquez/pickout/issues">leave it at my github page</a></span>
+		</div>
+		
+		<div class="fullX margin">			
+			<div class="box-btn centerX">
+				<a class="btn_down" href="https://github.com/ktquez/pickout">DOWNLOAD</a>
+				
+				<div class="fl" style="margin-right:10px;">						
+					<a href="https://twitter.com/share" class="twitter-share-button fl" data-url="http://ktquez.github.io/pickout" data-text="Pickout - Cool and powerful effect to select fields. Javascript vanilla and &lt;2kb gzipped" data-via="ktquez">Tweet</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</div>
+
+				<div class="btn_stars_gh">
+					<iframe src="https://ghbtns.com/github-btn.html?user=ktquez&amp;repo=pickout&amp;type=star&amp;count=true&amp;size=small" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+				</div>
+			</div>
+		</div>
+
+	</footer>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/prism.min.js"></script>
+	<script src="./assets/pickout/pickout.js"></script>
+	<script>
+
+		// Normal
+		pickout.to('.option');
+
+		/* pickout.updated('.option'); */
+
+		// Support search
+		pickout.to({
+			'el': '.suit',
+			'search': true,
+			'noResults': 'RESULTADO NÃO ENCONTRADO'
+		});
+		
+		// Support opstion group (using theme Cricket)
+		pickout.to({
+			'el': '.country',
+			'theme': 'cricket'
+		});
+
+		// Support chosen multiple options (using theme Cricket)
+		pickout.to({
+			'el': '.skills',
+			'theme': 'cricket'
+		});
+
+		/*pickout.updatedMultiple({
+			'el': '.skills',
+			'theme': 'cricket'
+		});*/
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+:root {
+	
+	/*Colors*/
+	--asphalt: #52596b;
+	--dark-asphalt: #2c3e50;
+	--white: #fff;
+	--green: #28d8b3;
+	--silver: #f9f9f9;
+
+	--font-size: 16;
+
+	@custom-media --mobile (width <= 480px);
+	@custom-media --small (width >= 481px) and (width <= 800px);
+	@custom-media --medium (width >= 801px) and (width <= 1024px);
+	@custom-media --large (width >= 1025px);
+	
+};
+
+body {
+	font-family: Roboto, Arial;
+	font-size:100%;
+}
+
+.link{
+	color:var(--asphalt);
+	padding-bottom:2px;
+	border-bottom:1px dotted var(--asphalt);
+	float:left;
+	font-size:14px;
+}
+
+.margin{
+	margin-top:20px;
+}
+
+/*  TOP  */
+.header {
+	height: 50vh;
+	background-color: var(--asphalt);
+}
+
+.ribbom_github {
+	position: absolute; 
+	top: 0; 
+	right: 0; 
+	border: 0;
+}
+
+.box-top {
+	color:#fff;
+	text-align:center;
+}
+
+.top {
+	> .title {font-size:60px;}
+	> .subtitle {font-size:16px;}
+	> .subtitle {margin-bottom:20px;}
+	> .box-btn {
+		float:left;
+	}
+}
+
+@media(--mobile) {  	
+  	.top {
+  		> .title {font-size:40px};
+  	}
+}
+
+.box-btn {
+	> .btn_stars_gh {
+		float:left;
+		width:80px;
+	} 
+	> .btn_down{
+		float:left;
+		padding:3px 10px 2px;
+		font-size:10px;
+		margin-right:10px;
+		border-radius:4px;
+		color:#fff;
+		background-color: var(--green);
+		border:1px solid transparent;			
+
+		&:hover{		
+			background-color:var(--dark-asphalt);
+			border:1px solid var(--green);			
+		}
+	}
+} 	
+
+/*  CONTENT  */
+.main {
+	margin-bottom:40px;
+	.title{
+		margin-top:40px;
+		font-size:calc(40 / var(--font-size))em;
+	}
+}
+
+.how-using {	
+	> .block{
+		margin-top:20px;
+	}
+}
+
+.examples {
+	> .title-bg-section{
+		background-color:var(--green);
+		margin-top:40px;
+		margin-bottom:40px;
+		padding-top:60px;
+		padding-bottom:60px;
+		text-align:center;
+		font-size:50px;
+		color:var(--white);
+	}
+}
+
+.box_example {	
+	margin-bottom:30px;
+	padding-bottom:30px;
+	border-bottom:1px solid #f2f2f2;
+
+	> .title_feature{font-size:25px;}
+	> .code, > .action {
+		float:left;
+	}
+	> .action {
+		margin-top:6px;
+		> .title_demo{
+			margin-bottom:20px;
+			margin-top:10px;
+		}
+	}
+}
+
+.footer{
+	background-color:var(--dark-asphalt); 
+	padding-bottom:40px;
+	padding-top:40px;
+	color:var(--white);
+	font-size:14px;
+
+	a {
+		color:var(--green);
+	}
+
+	.box-btn {
+		float:left;
+	}
+}
+
+/*prism*/
+:not(pre) > code[class*="language-"], pre[class*="language-"]{background-color:#f9f9f9;}
+code[class*="language-"], pre[class*="language-"]{font-size:14px;}
+
+/*pickout*/
+.pk-field.-multiple{
+	cursor:crosshair;	
+}
