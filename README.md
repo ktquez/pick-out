@@ -233,6 +233,9 @@ pickout.updated('.city');
 
 ## ChangeLog
 
+**v1.3.3**
+- Fix the arrow style  
+
 **v1.3.1 / v1.3.2**
 - Add link Demo Page
 - Styles themes
