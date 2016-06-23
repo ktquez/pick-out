@@ -87,7 +87,7 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
         <option value=""></option> <!-- If the check is not required, submit a default value empty -->
         <optgroup label="America">
             <option value="EUA">EUA</option>
-            <option value="Brazil" selected="selected">Brazil</option>
+            <option value="Brazil" selected>Brazil</option>
             <option value="Canada">Canada</option>                      
         </optgroup>
         <optgroup label="Europe">
