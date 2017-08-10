@@ -347,7 +347,7 @@ var pickout = (function(){
 
 		// Title Option Group
 		if (!!data.optGroup) {
-			var optCreated = _.$('li[data-opt-group='+data.optGroup.label+']', main);
+			var optCreated = _.$('li[data-opt-group='+data.optGroup.label.replace(/\s/g,'')+']', main);
 
 			// Created if not exists
 			if (!optCreated) {
