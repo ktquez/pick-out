@@ -1,7 +1,7 @@
 {
   "name": "pickout",
   "version": "2.0.1",
-  "description": "Cool efect for field select on form",
+  "description": "Cool effect for field select on form",
   "main": "./dist/pickout.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
