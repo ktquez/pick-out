@@ -1,3 +1,9 @@
+.pk-form {
+	width:100%;
+	float:left;
+	margin:5px 0;
+}
+
 .pk-field {
 	width:calc(100% - 16px);
 	float:left;
@@ -17,9 +23,9 @@
 	bottom:0;
 	text-align:center;	
 	width:30px;	
-	padding-bottom:3px;	
 	font-family:Arial;
-	border-radius:0 5px 5px 0;			
+	border-radius:0 5px 5px 0;
+	height: 100%;			
 }
 
 .pk-arrow:before{
