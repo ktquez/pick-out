@@ -42,13 +42,13 @@ Include the script
 ### Or Using CDN
 Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://cdnjs.com/libraries/pickout) to include the files in your page:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.0/pickout.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.1/pickout.min.css">
 ...
 </head>
 ```
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.0/pickout.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.1/pickout.min.js"></script>
 ...
 </body>
 ```
@@ -239,7 +239,7 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v2.0.0**
+**v2.0.1**
 
 ## Browser Support
 
@@ -250,7 +250,7 @@ pickout.updated('.city');
 
 ## ChangeLog
 
-**v2.0.0**
+**v2.0.1**
 - New CSS class to wrap form
 - New syntax: add div tag before select 
 - Bugfix: Search with spaces (by [@alexsmonte](https://github.com/ktquez/pickout/pull/21))

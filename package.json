@@ -1,6 +1,6 @@
 {
   "name": "pickout",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cool efect for field select on form",
   "main": "./dist/pickout.min.js",
   "scripts": {
