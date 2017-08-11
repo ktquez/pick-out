@@ -52,26 +52,30 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 <!-- Normal use -->
 <div class="form-group">
     <label for="option">Option:</label>
-    <select name="option" id="option" class="option all" placeholder="Select a option">
-        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
-        <option value="opt1">Option 1</option>
-        <option value="opt2">Option 2</option>
-        <option value="opt3">Option 3</option>
-        <option value="opt4">Option 4</option>
-    </select>       
+    <div class="pk-form">
+        <select name="option" id="option" class="option all" placeholder="Select a option">
+            <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+            <option value="opt1">Option 1</option>
+            <option value="opt2">Option 2</option>
+            <option value="opt3">Option 3</option>
+            <option value="opt4">Option 4</option>
+        </select>       
+    </div>
 </div>
 
 
 <!-- Using with icons -->
 <div class="form-group">
     <label for="suit">Suit:</label>
-    <select name="suit" id="suit" class="suit all" placeholder="Select a suit">
-        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
-        <option data-icon="&spades;" value="Spade">Spade</option>
-        <option data-icon="&clubs;" value="Club">Club</option>
-        <option data-icon="&hearts;" value="Heart">Heart</option>
-        <option data-icon="&diams;" value="Diamond">Diamond</option>
-    </select>       
+    <div class="pk-form">
+        <select name="suit" id="suit" class="suit all" placeholder="Select a suit">
+            <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+            <option data-icon="&spades;" value="Spade">Spade</option>
+            <option data-icon="&clubs;" value="Club">Club</option>
+            <option data-icon="&hearts;" value="Heart">Heart</option>
+            <option data-icon="&diams;" value="Diamond">Diamond</option>
+        </select> 
+    </div>      
 </div>
 ```
 
@@ -83,20 +87,22 @@ Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://c
 <!-- Option group -->
 <div class="form-group">
     <label for="country">Country</label>
-    <select name="country" id="country" class="country all" placeholder="Select a Country">
-        <option value=""></option> <!-- If the check is not required, submit a default value empty -->
-        <optgroup label="America">
-            <option value="EUA">EUA</option>
-            <option value="Brazil" selected>Brazil</option>
-            <option value="Canada">Canada</option>                      
-        </optgroup>
-        <optgroup label="Europe">
-            <option value="Ireland">Ireland</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Italy">Italy</option>
-            <option value="Portugal">Portugal</option>                      
-        </optgroup>
-    </select>           
+    <div class="pk-form">
+        <select name="country" id="country" class="country all" placeholder="Select a Country">
+            <option value=""></option> <!-- If the check is not required, submit a default value empty -->
+            <optgroup label="America">
+                <option value="EUA">EUA</option>
+                <option value="Brazil" selected>Brazil</option>
+                <option value="Canada">Canada</option>                      
+            </optgroup>
+            <optgroup label="Europe">
+                <option value="Ireland">Ireland</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Italy">Italy</option>
+                <option value="Portugal">Portugal</option>                      
+            </optgroup>
+        </select> 
+    </div>          
 </div>
 ```
 
@@ -137,21 +143,23 @@ Simply enter the **multiple** HTML attribute in the field select what you want
 ```html
 <div class="form-group">
     <label for="Skills"><h3>Your skills</h3></label>
-    <select name="skills[]" id="skills" multiple class="skills" placeholder="Add your Skills">
-        <option value=""></option> <!-- If the check is not required, submit a default value empty -->     
-        <option value="PHP">PHP</option>
-        <option value="Ruby">Ruby</option>
-        <option value="C++">C++</option>
-        <option value="Scrum">Scrum</option>
-        <option value="Java">Java</option>
-        <option value="Cobol">Cobol</option>
-        <option value="Javascript">Javascript</option>
-        <option value="AngularJS">AngularJS</option>
-        <option value="Ionic">Ionic</option>
-        <option value="VueJS">VueJS</option>
-        <option value="ReactJS">ReactJS</option>
-        <option value="React Native">React Native</option>
-    </select>           
+    <div class="pk-form">
+        <select name="skills[]" id="skills" multiple class="skills" placeholder="Add your Skills">
+            <option value=""></option> <!-- If the check is not required, submit a default value empty -->     
+            <option value="PHP">PHP</option>
+            <option value="Ruby">Ruby</option>
+            <option value="C++">C++</option>
+            <option value="Scrum">Scrum</option>
+            <option value="Java">Java</option>
+            <option value="Cobol">Cobol</option>
+            <option value="Javascript">Javascript</option>
+            <option value="AngularJS">AngularJS</option>
+            <option value="Ionic">Ionic</option>
+            <option value="VueJS">VueJS</option>
+            <option value="ReactJS">ReactJS</option>
+            <option value="React Native">React Native</option>
+        </select>
+    </div>           
 </div>
 ```
 
@@ -207,11 +215,13 @@ pickout.to({
 ```html
 <div class="form-group">
     <label for="state">State:</label>
-    <select name="state" id="state" class="state all" placeholder="Select to option">
-      <!-- Option selected by default -->
-        <option value="opt1" selected>Option 1</option>
-        <option value="opt2">Option 2</option>
-    </select>       
+    <div class="pk-form">
+        <select name="state" id="state" class="state all" placeholder="Select to option">
+        <!-- Option selected by default -->
+            <option value="opt1" selected>Option 1</option>
+            <option value="opt2">Option 2</option>
+        </select>  
+    </div>     
 </div>
 ```
 
@@ -222,7 +232,7 @@ pickout.updated('.city');
 ```
 
 ## Current version stable
-**v1.3.0**
+**v2.0.0**
 
 ## Browser Support
 
@@ -232,6 +242,11 @@ pickout.updated('.city');
 
 
 ## ChangeLog
+
+**v2.0.0**
+- New CSS class to wrap form
+- New syntax: add div tag before select 
+- Bugfix: Search with spaces (by [@alexsmonte](https://github.com/ktquez/pickout/pull/21))
 
 **v1.3.3**
 - Fix the arrow style  
