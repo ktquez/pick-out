@@ -2,6 +2,13 @@
 Cool and powerful effect to select fields. Javascript vanilla and ~2kb gzipped.
 <br>**[DEMO PAGE](http://ktquez.github.io/pickout/)**
 
+---
+
+For syntax of the previous version [click here](https://github.com/ktquez/pickout/tree/v1.3.3)
+
+---
+
+
 ## How to use 
 ### npm
 
@@ -35,13 +42,13 @@ Include the script
 ### Or Using CDN
 Taking advantage that cdn provides, you can use the [pickout in cdnjs](https://cdnjs.com/libraries/pickout) to include the files in your page:
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.3/pickout.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.0/pickout.min.css">
 ...
 </head>
 ```
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/1.3.3/pickout.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pickout/2.0.0/pickout.min.js"></script>
 ...
 </body>
 ```
